@@ -11,8 +11,16 @@ config_version=4
 [application]
 
 config/name="EPProj"
-run/main_scene="res://scenes/demo.tscn"
+run/main_scene="res://scenes/gameplay_ph/demo.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/size/width=1920
+window/size/height=1080
+window/size/fullscreen=true
+window/vsync/use_vsync=false
+window/vsync/vsync_via_compositor=true
 
 [gdnative]
 
