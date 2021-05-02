@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/gameplay_ph/player/movement.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://scenes/gameplay_ph/placeholderbg.jpg" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 [sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 1.296, 2.6 )
 
 [node name="Node2D" type="Node2D"]
 
@@ -24,8 +26,15 @@ scale = Vector2( 2, 2 )
 shape = SubResource( 1 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2( 100, 100 )
 scale = Vector2( 5, 5 )
+z_index = -1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 128, 8 )
+scale = Vector2( 100, 20 )
 shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="StaticBody2D"]
+position = Vector2( 128, -11.2 )
+scale = Vector2( 0.138933, 0.131845 )
+texture = ExtResource( 3 )
