@@ -1,10 +1,43 @@
-[gd_scene format=2]
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/level_select/lvl_indi.gd" type="Script" id=1]
+[ext_resource path="res://scenes/level_select/button.gd" type="Script" id=2]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 2.245
-margin_right = 2.245
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Level_Indicator" type="RichTextLabel" parent="."]
+margin_left = 600.0
+margin_top = 320.0
+margin_right = 640.0
+margin_bottom = 360.0
+bbcode_text = "yikes"
+text = "yikes"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Button_1" type="Button" parent="."]
+margin_top = 360.0
+margin_right = 12.0
+margin_bottom = 380.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button_2" type="Button" parent="."]
+margin_left = 1264.0
+margin_top = 360.0
+margin_right = 1276.0
+margin_bottom = 380.0
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
