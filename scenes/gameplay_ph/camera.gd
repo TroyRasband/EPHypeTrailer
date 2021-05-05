@@ -1,10 +1,11 @@
 extends Camera2D
 
-# Get player
-onready var player = get_parent().get_node("player")
+onready var TL = get_node("Node/TL_L")
+onready var BR = get_node("Node/BR_L")
 
-# Set position to player position
-func _process(delta):
-	global_position.x = player.global_position.x
-	global_position.y = player.global_position.y
+func _ready():
+	limit_top = TL.position.y
+	limit_bottom = BR.position.y
+	limit_left = TL.position.x
+	limit_right = BR.position.x
 	
