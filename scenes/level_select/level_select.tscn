@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/level_select/lvl_indi.gd" type="Script" id=1]
 [ext_resource path="res://scenes/level_select/button.gd" type="Script" id=2]
+[ext_resource path="res://scenes/level_select/select_level.gd" type="Script" id=3]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -24,20 +26,39 @@ __meta__ = {
 }
 
 [node name="Button_1" type="Button" parent="."]
-margin_top = 360.0
-margin_right = 12.0
-margin_bottom = 380.0
+anchor_left = 0.031
+anchor_top = 0.944
+anchor_right = 0.031
+anchor_bottom = 0.944
+margin_left = -15.68
+margin_top = -15.6801
+margin_right = 16.32
+margin_bottom = 16.3199
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Button_2" type="Button" parent="."]
-margin_left = 1264.0
-margin_top = 360.0
-margin_right = 1276.0
-margin_bottom = 380.0
+anchor_left = 0.969
+anchor_top = 0.944
+anchor_right = 0.969
+anchor_bottom = 0.944
+margin_left = -16.3201
+margin_top = -15.6801
+margin_right = 15.6799
+margin_bottom = 16.3199
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ugh" type="RichTextLabel" parent="."]
+margin_left = 528.0
+margin_top = 656.0
+margin_right = 728.0
+margin_bottom = 704.0
+text = "Press space to go to game"
 __meta__ = {
 "_edit_use_anchors_": false
 }
