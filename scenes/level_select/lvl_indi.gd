@@ -9,9 +9,9 @@ func _process(_delta):
 	# Quirky modulus math that returns the index of the level
 	level = abs(fmod(button_r.counter + button_l.counter, 4))
 	get_node(".").text = str(level)
-	if level <= 0:
+	if level == 0:
 		ed(true, false)
-	if level >= 3:
+	elif level == 3:
 		ed(false, true)
 	else:
 		ed(false, false)

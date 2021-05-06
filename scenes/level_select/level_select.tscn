@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/level_select/lvl_indi.gd" type="Script" id=1]
 [ext_resource path="res://scenes/level_select/button.gd" type="Script" id=2]
 [ext_resource path="res://scenes/level_select/select_level.gd" type="Script" id=3]
+[ext_resource path="res://scenes/level_select/sprites/button.png" type="Texture" id=4]
+[ext_resource path="res://scenes/level_select/sprites/button_disabled.png" type="Texture" id=5]
+[ext_resource path="res://scenes/level_select/sprites/black.png" type="Texture" id=6]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -25,29 +28,49 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="Button_1" type="Button" parent="."]
-anchor_left = 0.031
-anchor_top = 0.944
+[node name="TextureRect" type="TextureRect" parent="."]
 anchor_right = 0.031
-anchor_bottom = 0.944
-margin_left = -15.68
-margin_top = -15.6801
-margin_right = 16.32
-margin_bottom = 16.3199
+anchor_bottom = 0.056
+margin_top = 568.0
+margin_right = 1240.32
+margin_bottom = 679.68
+texture = ExtResource( 6 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button_1" type="TextureButton" parent="."]
+anchor_left = 0.028
+anchor_top = 0.833
+anchor_right = 0.094
+anchor_bottom = 0.95
+margin_left = 84.16
+margin_top = 0.239929
+margin_right = 55.68
+margin_bottom = -28.0001
+rect_scale = Vector2( -1.5, 1.5 )
+texture_normal = ExtResource( 4 )
+texture_disabled = ExtResource( 5 )
+expand = true
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button_2" type="Button" parent="."]
-anchor_left = 0.969
-anchor_top = 0.944
-anchor_right = 0.969
-anchor_bottom = 0.944
-margin_left = -16.3201
-margin_top = -15.6801
-margin_right = 15.6799
-margin_bottom = 16.3199
+[node name="Button_2" type="TextureButton" parent="."]
+anchor_left = 0.906
+anchor_top = 0.833
+anchor_right = 0.972
+anchor_bottom = 0.95
+margin_left = 0.319946
+margin_top = 0.239929
+margin_right = -28.16
+margin_bottom = -28.0001
+rect_scale = Vector2( 1.5, 1.5 )
+texture_normal = ExtResource( 4 )
+texture_disabled = ExtResource( 5 )
+expand = true
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
