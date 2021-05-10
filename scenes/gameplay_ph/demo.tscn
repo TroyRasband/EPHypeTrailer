@@ -1,7 +1,7 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://scenes/gameplay_ph/player/movement.gd" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://scenes/gameplay_ph/enemy/enemy_sheet.png" type="Texture" id=2]
 [ext_resource path="res://scenes/gameplay_ph/placeholderbg.jpg" type="Texture" id=3]
 [ext_resource path="res://scenes/gameplay_ph/enemy/enemy_movement.gd" type="Script" id=4]
 [ext_resource path="res://scenes/gameplay_ph/camera.gd" type="Script" id=5]
@@ -192,10 +192,91 @@ extents = Vector2( 9.6, 44.8 )
 extents = Vector2( 128, 10 )
 
 [sub_resource type="RectangleShape2D" id=11]
-extents = Vector2( 32, 16 )
+extents = Vector2( 24, 24 )
+
+[sub_resource type="Animation" id=14]
+resource_name = "Attack"
+length = 0.6
+loop = true
+step = 0.0666667
+tracks/0/type = "value"
+tracks/0/path = NodePath("ENEMY_Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.133333, 0.2, 0.333333, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 4, 5, 5, 6, 6 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.6 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "change_state_default"
+} ]
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "Hit"
+length = 0.6
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("ENEMY_Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 7 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.6 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "change_state_default"
+} ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "Move"
+length = 0.666667
+loop = true
+step = 0.166667
+tracks/0/type = "value"
+tracks/0/path = NodePath("ENEMY_Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.166667, 0.333333, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
 
 [sub_resource type="RectangleShape2D" id=12]
-extents = Vector2( 32, 32 )
+extents = Vector2( 48, 48 )
 
 [node name="Node2D" type="Node2D"]
 
@@ -293,11 +374,20 @@ position = Vector2( 112, 520 )
 script = ExtResource( 4 )
 
 [node name="ENEMY_Coll" type="CollisionShape2D" parent="YSort/ENEMY"]
-position = Vector2( 0, 16 )
+position = Vector2( 0, 8 )
 shape = SubResource( 11 )
 
 [node name="ENEMY_Sprite" type="Sprite" parent="YSort/ENEMY"]
+position = Vector2( 0, -24 )
+scale = Vector2( 4, 4 )
 texture = ExtResource( 2 )
+hframes = 8
+frame = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="YSort/ENEMY"]
+anims/Attack = SubResource( 14 )
+anims/Hit = SubResource( 15 )
+anims/Move = SubResource( 13 )
 
 [node name="Hurtbox" type="Area2D" parent="YSort/ENEMY" groups=[
 "Hurtbox",
@@ -305,6 +395,7 @@ texture = ExtResource( 2 )
 script = ExtResource( 7 )
 
 [node name="ENEMY_Hurtbox" type="CollisionShape2D" parent="YSort/ENEMY/Hurtbox"]
+position = Vector2( 0, -16 )
 shape = SubResource( 12 )
 
 [connection signal="area_entered" from="YSort/PLAYER/BoxPivot/Hitbox" to="YSort/PLAYER" method="_on_Hitbox_area_entered"]
