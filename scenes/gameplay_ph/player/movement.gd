@@ -50,8 +50,10 @@ func handle_sprite(input, vel, attack):
 	# Flip sprite depending on what direction the player is facing
 	if input.x == -1:
 		$PLAYER_Sprite.flip_h = true
+		$BoxPivot.scale.x = -1
 	if input.x == 1:
 		$PLAYER_Sprite.flip_h = false
+		$BoxPivot.scale.x = 1
 
 # Handles animation state; returns true if the attack animation is playing; false otherwise
 func state(animation):
@@ -85,3 +87,8 @@ func swap():
 # Resets animation to Idle
 func reset():
 	animation = "Idle"
+
+# Check if hitbox connects with hurtbox
+func _on_Hitbox_area_entered(area):
+	if (area.is_in_group("Hurtbox")):
+		area.get_hurt()

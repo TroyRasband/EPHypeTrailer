@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://scenes/gameplay_ph/player/movement.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
@@ -6,11 +6,12 @@
 [ext_resource path="res://scenes/gameplay_ph/enemy/enemy_movement.gd" type="Script" id=4]
 [ext_resource path="res://scenes/gameplay_ph/camera.gd" type="Script" id=5]
 [ext_resource path="res://scenes/gameplay_ph/player/animation_sheet_player.png" type="Texture" id=6]
+[ext_resource path="res://scenes/gameplay_ph/hurtbox.gd" type="Script" id=7]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 24, 12 )
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=2]
 resource_name = "Attack_1"
 length = 0.4
 loop = true
@@ -34,15 +35,27 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.4 ),
+"times": PoolRealArray( 0.333333 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
 "method": "reset"
 } ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("BoxPivot/Hitbox/PLAYER_Hitbox:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.0666667, 0.133333 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=3]
 resource_name = "Attack_2"
 length = 0.4
 loop = true
@@ -66,15 +79,27 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.4 ),
+"times": PoolRealArray( 0.333333 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
 "method": "reset"
 } ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("BoxPivot/Hitbox/PLAYER_Hitbox:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.0666667, 0.133333, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, true, false, true ]
+}
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=4]
 resource_name = "Attack_3"
 length = 0.333333
 loop = true
@@ -105,8 +130,20 @@ tracks/1/keys = {
 "method": "reset"
 } ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("BoxPivot/Hitbox/PLAYER_Hitbox:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.0666667, 0.133333, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=5]
 resource_name = "Idle"
 length = 0.5
 loop = true
@@ -124,7 +161,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3 ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=6]
 resource_name = "Move"
 length = 0.5
 loop = true
@@ -142,17 +179,23 @@ tracks/0/keys = {
 "values": [ 4, 5, 6, 7, 8, 9 ]
 }
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="CircleShape2D" id=7]
+radius = 28.8444
+
+[sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 1.28, 2.6 )
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 9.6, 44.8 )
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 128, 10 )
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=11]
 extents = Vector2( 32, 16 )
+
+[sub_resource type="RectangleShape2D" id=12]
+extents = Vector2( 32, 32 )
 
 [node name="Node2D" type="Node2D"]
 
@@ -182,12 +225,12 @@ position = Vector2( 0, 128 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 6 )
 hframes = 24
-frame = 23
+frame = 19
 
 [node name="PLAYER_Coll" type="CollisionShape2D" parent="YSort/PLAYER"]
 position = Vector2( 0, 40 )
 scale = Vector2( 2, 2 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="Cam" type="Camera2D" parent="YSort/PLAYER"]
 current = true
@@ -204,11 +247,20 @@ script = ExtResource( 5 )
 position = Vector2( 1280, 720 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="YSort/PLAYER"]
-anims/Attack_1 = SubResource( 11 )
-anims/Attack_2 = SubResource( 12 )
-anims/Attack_3 = SubResource( 13 )
-anims/Idle = SubResource( 9 )
-anims/Move = SubResource( 10 )
+anims/Attack_1 = SubResource( 2 )
+anims/Attack_2 = SubResource( 3 )
+anims/Attack_3 = SubResource( 4 )
+anims/Idle = SubResource( 5 )
+anims/Move = SubResource( 6 )
+
+[node name="BoxPivot" type="Position2D" parent="YSort/PLAYER"]
+
+[node name="Hitbox" type="Area2D" parent="YSort/PLAYER/BoxPivot"]
+
+[node name="PLAYER_Hitbox" type="CollisionShape2D" parent="YSort/PLAYER/BoxPivot/Hitbox"]
+position = Vector2( 56, -16 )
+shape = SubResource( 7 )
+disabled = true
 
 [node name="BCK" type="StaticBody2D" parent="YSort"]
 scale = Vector2( 5, 5 )
@@ -217,7 +269,7 @@ z_index = -1
 [node name="BCK_Coll" type="CollisionShape2D" parent="YSort/BCK"]
 position = Vector2( 128, 8 )
 scale = Vector2( 100, 20 )
-shape = SubResource( 3 )
+shape = SubResource( 8 )
 
 [node name="BCK_Sprite" type="Sprite" parent="YSort/BCK"]
 position = Vector2( 128, -11.2 )
@@ -226,23 +278,33 @@ texture = ExtResource( 3 )
 
 [node name="BCK_COLL_L" type="CollisionShape2D" parent="YSort/BCK"]
 position = Vector2( -9.6, 99.2 )
-shape = SubResource( 4 )
+shape = SubResource( 9 )
 
 [node name="BCK_COLL_R" type="CollisionShape2D" parent="YSort/BCK"]
 position = Vector2( 265.6, 99.2 )
-shape = SubResource( 4 )
+shape = SubResource( 9 )
 
 [node name="BCK_COLL_B" type="CollisionShape2D" parent="YSort/BCK"]
 position = Vector2( 128, 153.6 )
-shape = SubResource( 5 )
+shape = SubResource( 10 )
 
 [node name="ENEMY" type="KinematicBody2D" parent="YSort"]
 position = Vector2( 112, 520 )
 script = ExtResource( 4 )
 
 [node name="ENEMY_Coll" type="CollisionShape2D" parent="YSort/ENEMY"]
-shape = SubResource( 6 )
+position = Vector2( 0, 16 )
+shape = SubResource( 11 )
 
 [node name="ENEMY_Sprite" type="Sprite" parent="YSort/ENEMY"]
-position = Vector2( 0, -16 )
 texture = ExtResource( 2 )
+
+[node name="Hurtbox" type="Area2D" parent="YSort/ENEMY" groups=[
+"Hurtbox",
+]]
+script = ExtResource( 7 )
+
+[node name="ENEMY_Hurtbox" type="CollisionShape2D" parent="YSort/ENEMY/Hurtbox"]
+shape = SubResource( 12 )
+
+[connection signal="area_entered" from="YSort/PLAYER/BoxPivot/Hitbox" to="YSort/PLAYER" method="_on_Hitbox_area_entered"]
