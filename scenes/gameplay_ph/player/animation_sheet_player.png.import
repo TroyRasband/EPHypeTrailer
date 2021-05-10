@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/attack_1_7.png-d5de2915576136a06709e274c7836b92.stex"
+path="res://.import/animation_sheet_player.png-b86d948624ce91dfd49d8c989bfc9a8d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/gameplay_ph/player/attack/attack_1_7.png"
-dest_files=[ "res://.import/attack_1_7.png-d5de2915576136a06709e274c7836b92.stex" ]
+source_file="res://scenes/gameplay_ph/player/animation_sheet_player.png"
+dest_files=[ "res://.import/animation_sheet_player.png-b86d948624ce91dfd49d8c989bfc9a8d.stex" ]
 
 [params]
 

@@ -6,7 +6,9 @@ var speed = 200
 var animation = "Idle"
 var attack
 var state = true
-var prev_attack
+var prev_attack = "Attack_3"
+
+onready var player = $AnimationPlayer
 
 # Handles physics processes including collision
 func _physics_process(delta):
@@ -21,31 +23,29 @@ func _physics_process(delta):
 	else:
 		input = Vector2.ZERO
 	
-	vel = input.normalized() * speed * 60 * delta
-	vel = move_and_slide(vel)
+	# If the animation is playing but the user attempts to input an attack, set attack to 0
+	if state(animation):
+		attack = 0
+	
+	vel = input.normalized() * speed * 60
+	vel = move_and_slide(vel * delta)
 	
 	handle_sprite(input, vel, attack)
 	
 func handle_sprite(input, vel, attack):
 	# Set animation to variable animation
-	$PLAYER_Sprite.play(animation)
+	player.play(animation)
 	
 	# Check the state of the player animation; returns false if it's not attacking
-	if state(animation) == false:
+	if !state(animation):
 		# If the player is not moving, set the animation to "Idle", otherwise set it to run
 		if vel == Vector2.ZERO:
 			animation = "Idle"
 		else:
-			animation = "Run"
+			animation = "Move"
 	
-	# If it is attacking, wait for the animation to finish and then set the animation to idle
-	if state(animation) == true:
-		yield($PLAYER_Sprite, "animation_finished")
-		animation = "Idle"
-	
-	# If the player inputs an attack, set the animation to attack 1
-	if attack:
-		animation = "Attack_1"
+	# If the player inputs an attack, set the animation to an attack animation
+	handle_attack()
 
 	# Flip sprite depending on what direction the player is facing
 	if input.x == -1:
@@ -55,8 +55,33 @@ func handle_sprite(input, vel, attack):
 
 # Handles animation state; returns true if the attack animation is playing; false otherwise
 func state(animation):
-	if ($PLAYER_Sprite.animation == "Attack_1"):
+	if ((animation == "Attack_1") || (animation == "Attack_2") ||
+	(animation == "Attack_3")):
 		state = true
 	else:
 		state = false
 	return state
+
+# Check if the player inputs an attack
+func handle_attack():
+	if attack:
+		if (prev_attack == "Attack_3"):
+			animation = "Attack_1"
+			swap()
+			return
+		if (prev_attack == "Attack_1"):
+			animation = "Attack_2"
+			swap()
+			return
+		if (prev_attack == "Attack_2"):
+			animation = "Attack_3"
+			swap()
+			return
+
+# Changes prev_animation to current animation
+func swap():
+	prev_attack = animation
+
+# Resets animation to Idle
+func reset():
+	animation = "Idle"
