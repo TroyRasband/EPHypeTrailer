@@ -2,35 +2,64 @@ extends KinematicBody2D
 
 # Create a velocity zero vector <0,0>
 var vel = Vector2.ZERO
-var speed = 200
+var speed = 300
 var animation = "Idle"
 var attack
 var state = true
 var prev_attack = "Attack_3"
+var health = 16
+var not_dead
 
+var knockback = Vector2.ZERO
+
+var state_m
+
+onready var timer = get_node("AttackReset")
 onready var player = $AnimationPlayer
+
+enum state_machine_player {
+	MOVE,
+	HIT,
+	ATTACK,
+	IDLE
+}
+
+enum direction {
+	LEFT,
+	RIGHT
+}
+
+func _ready():
+	state_m = state_machine_player.IDLE
+	timer.set_wait_time(1)
+	not_dead = true
 
 # Handles physics processes including collision
 func _physics_process(delta):
-	var input = Vector2.ZERO
-	attack = Input.is_action_just_pressed("ui_accept")
+	if (not_dead):
+		var input = Vector2.ZERO
+		attack = Input.is_action_just_pressed("ui_accept")
 	
-	# If the attack animation is not playing
-	if !attack && state(animation) == false:
-		# Returns the input values
-		input.x = (Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"))
-		input.y = (Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up"))
-	else:
-		input = Vector2.ZERO
+		# If the attack animation is not playing
+		if !attack && state(animation) == false && state_m != state_machine_player.HIT:
+			# Returns the input values
+			input.x = (Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"))
+			input.y = (Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up"))
+		else:
+			input = Vector2.ZERO
 	
-	# If the animation is playing but the user attempts to input an attack, set attack to 0
-	if state(animation):
-		attack = 0
+		if state_m == state_machine_player.HIT:
+			knockback = knockback.move_toward(Vector2.ZERO, 1000 * delta)
+			knockback = move_and_slide(knockback)
+		
+		# If the animation is playing but the user attempts to input an attack, set attack to 0
+		if state(animation):
+			attack = 0
 	
-	vel = input.normalized() * speed * 60
-	vel = move_and_slide(vel * delta)
+		vel = input.normalized() * speed * 60
+		vel = move_and_slide(vel * delta)
 	
-	handle_sprite(input, vel, attack)
+		handle_sprite(input, vel, attack)
 	
 func handle_sprite(input, vel, attack):
 	# Set animation to variable animation
@@ -49,11 +78,14 @@ func handle_sprite(input, vel, attack):
 
 	# Flip sprite depending on what direction the player is facing
 	if input.x == -1:
-		$PLAYER_Sprite.flip_h = true
+		$PLAYER_Sprite.set_flip_h(true)
 		$BoxPivot.scale.x = -1
 	if input.x == 1:
-		$PLAYER_Sprite.flip_h = false
+		$PLAYER_Sprite.set_flip_h(false)
 		$BoxPivot.scale.x = 1
+		
+	if state_m == state_machine_player.HIT:
+		animation = "Hit"
 
 # Handles animation state; returns true if the attack animation is playing; false otherwise
 func state(animation):
@@ -67,17 +99,21 @@ func state(animation):
 # Check if the player inputs an attack
 func handle_attack():
 	if attack:
-		if (prev_attack == "Attack_3"):
+		if (prev_attack == "Attack_3") && timer.time_left == 0:
 			animation = "Attack_1"
 			swap()
+			reset_timer()
 			return
 		if (prev_attack == "Attack_1"):
 			animation = "Attack_2"
 			swap()
+			reset_timer()
 			return
 		if (prev_attack == "Attack_2"):
 			animation = "Attack_3"
 			swap()
+			timer.set_wait_time(1)
+			timer.stop()
 			return
 
 # Changes prev_animation to current animation
@@ -88,7 +124,26 @@ func swap():
 func reset():
 	animation = "Idle"
 
+# Reset the timer
+func reset_timer():
+	timer.stop()
+	timer.set_wait_time(1)
+	timer.start()
+
 # Check if hitbox connects with hurtbox
 func _on_Hitbox_area_entered(area):
 	if (area.is_in_group("Hurtbox")):
 		area.get_hurt()
+	if (area.is_in_group("Hurtbox") && animation == "Attack_3"):
+		area.get_hurt_really_bad()
+
+# Gets called when time runs out
+func _on_AttackReset_timeout():
+	prev_attack = "Attack_3"
+	timer.stop()
+	
+func change_state(_state):
+	state_m = _state
+	
+func change_state_def():
+	state_m = state_machine_player.IDLE

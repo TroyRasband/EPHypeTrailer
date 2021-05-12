@@ -4,7 +4,7 @@ extends KinematicBody2D
 var vel = Vector2.ZERO
 var speed = 120
 var is_hurt = false
-var health = 2
+var health = 6
 var animation = "Move"
 
 var dir
@@ -43,8 +43,10 @@ func _ready():
 	type = level_type.ONE
 
 func _physics_process(delta):
+	if (health <= 0):
+		queue_free()
+	
 	handle_sprite()
-	print(dir)
 	vel = (player.position - position).normalized() * speed
 	if state == state_machine_enemy.MOVE:
 		vel = move_and_slide(vel)
@@ -79,6 +81,13 @@ func handle_sprite():
 		animation = "Attack"
 	if (dir == 1):
 		$ENEMY_Sprite.set_flip_h(false)
+		$BoxPivot.scale.x = 1
 	if (dir == 0):
 		$ENEMY_Sprite.set_flip_h(true)
+		$BoxPivot.scale.x = -1
 	animation_player.play(animation)
+
+
+func _on_Hitbox_area_entered(area):
+	if (area.is_in_group("Player_Hurtbox")):
+		area.get_hurt()
