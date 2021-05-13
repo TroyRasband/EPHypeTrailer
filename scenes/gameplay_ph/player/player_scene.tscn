@@ -1,0 +1,293 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://scenes/gameplay_ph/player/animation_sheet_player.png" type="Texture" id=1]
+[ext_resource path="res://scenes/gameplay_ph/player/movement.gd" type="Script" id=2]
+[ext_resource path="res://scenes/gameplay_ph/hurtbox_player.gd" type="Script" id=3]
+[ext_resource path="res://scenes/gameplay_ph/camera.gd" type="Script" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 24, 12 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "Attack_1"
+length = 0.4
+loop = true
+step = 0.0666667
+tracks/0/type = "value"
+tracks/0/path = NodePath("PLAYER_Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 10, 11, 12, 13, 14, 10 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.333333 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "reset"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("BoxPivot/Hitbox/PLAYER_Hitbox:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.0666667, 0.133333 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Attack_2"
+length = 0.4
+loop = true
+step = 0.0666667
+tracks/0/type = "value"
+tracks/0/path = NodePath("PLAYER_Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 14, 15, 16, 17, 18, 15 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.333333 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "reset"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("BoxPivot/Hitbox/PLAYER_Hitbox:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.0666667, 0.133333, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, true, false, true ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Attack_3"
+length = 0.333333
+loop = true
+step = 0.0666667
+tracks/0/type = "value"
+tracks/0/path = NodePath("PLAYER_Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0666667, 0.133333, 0.2, 0.266667 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 19, 20, 21, 22, 23 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.333333 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "reset"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("BoxPivot/Hitbox/PLAYER_Hitbox:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.0666667, 0.133333, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Hit"
+length = 0.3
+loop = true
+step = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("PLAYER_Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 24 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "change_state_def"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("BoxPivot/Hitbox/PLAYER_Hitbox:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 0.5
+loop = true
+step = 0.125
+tracks/0/type = "value"
+tracks/0/path = NodePath("PLAYER_Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.125, 0.25, 0.375 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.5
+loop = true
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/path = NodePath("PLAYER_Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 6, 7, 8, 9 ]
+}
+
+[sub_resource type="CircleShape2D" id=8]
+radius = 28.8444
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 40, 56 )
+
+[node name="PLAYER" type="KinematicBody2D"]
+position = Vector2( 640, 352 )
+script = ExtResource( 2 )
+
+[node name="PLAYER_Sprite" type="Sprite" parent="."]
+scale = Vector2( 4, 4 )
+texture = ExtResource( 1 )
+hframes = 25
+frame = 24
+
+[node name="PLAYER_Coll" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 40 )
+scale = Vector2( 2, 2 )
+shape = SubResource( 1 )
+
+[node name="Cam" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 0.8, 0.8 )
+smoothing_enabled = true
+smoothing_speed = 3.0
+script = ExtResource( 4 )
+
+[node name="Node" type="Node" parent="Cam"]
+
+[node name="TL_L" type="Position2D" parent="Cam/Node"]
+
+[node name="BR_L" type="Position2D" parent="Cam/Node"]
+position = Vector2( 1280, 720 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Attack_1 = SubResource( 2 )
+anims/Attack_2 = SubResource( 3 )
+anims/Attack_3 = SubResource( 4 )
+anims/Hit = SubResource( 5 )
+anims/Idle = SubResource( 6 )
+anims/Move = SubResource( 7 )
+
+[node name="BoxPivot" type="Position2D" parent="."]
+
+[node name="Hitbox" type="Area2D" parent="BoxPivot"]
+
+[node name="PLAYER_Hitbox" type="CollisionShape2D" parent="BoxPivot/Hitbox"]
+position = Vector2( 56, -16 )
+shape = SubResource( 8 )
+disabled = true
+one_way_collision_margin = 0.0
+
+[node name="AttackReset" type="Timer" parent="."]
+
+[node name="Hurtbox_Player" type="Area2D" parent="." groups=[
+"Player_Hurtbox",
+]]
+collision_layer = 2
+script = ExtResource( 3 )
+
+[node name="PLAYER_Hurtbox" type="CollisionShape2D" parent="Hurtbox_Player"]
+position = Vector2( 0, 8 )
+shape = SubResource( 9 )
+
+[node name="Restrict_Spawn_TL" type="Position2D" parent="."]
+position = Vector2( -96, -112 )
+
+[node name="Restrict_Spawn_BR" type="Position2D" parent="."]
+position = Vector2( 96, 112 )
+
+[connection signal="area_entered" from="BoxPivot/Hitbox" to="." method="_on_Hitbox_area_entered"]
+[connection signal="timeout" from="AttackReset" to="." method="_on_AttackReset_timeout"]

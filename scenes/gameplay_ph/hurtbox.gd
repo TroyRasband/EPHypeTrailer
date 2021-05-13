@@ -1,7 +1,7 @@
 extends Area2D
 
 onready var enemy = get_parent()
-onready var player = get_parent().get_parent().get_node("PLAYER")
+onready var player = get_tree()
 
 func get_hurt():
 	enemy.health = enemy.health - 1

@@ -16,14 +16,16 @@ var state
 var type
 
 # Obtain the player
-onready var player = get_parent().get_node("PLAYER")
+onready var enemy_spawn
+onready var player
 onready var animation_player = $AnimationPlayer
 
 # Expermenting with state machines for enemy
 enum state_machine_enemy {
 	MOVE,
 	HIT,
-	ATTACK
+	ATTACK,
+	DEAD
 }
 
 enum direction {
@@ -41,10 +43,14 @@ enum level_type {
 func _ready():
 	state = state_machine_enemy.MOVE
 	type = level_type.ONE
+	player = get_parent().get_node("../PLAYER")
+	enemy_spawn = get_parent().get_parent().get_node("../Spawn_Enemy")
 
 func _physics_process(delta):
+	
 	if (health <= 0):
-		queue_free()
+		state = state_machine_enemy.DEAD
+		enemy_spawn.enemies = enemy_spawn.enemies - 1
 	
 	handle_sprite()
 	vel = (player.position - position).normalized() * speed
@@ -54,7 +60,7 @@ func _physics_process(delta):
 			dir = direction.RIGHT
 		if vel.x < -1:
 			dir = direction.LEFT
-	if vel.length() <= 30:
+	if vel.length() <= 40:
 		change_state(state_machine_enemy.ATTACK)
 	if state == state_machine_enemy.HIT:
 		knockback = knockback.move_toward(Vector2.ZERO, 1000 * delta)
@@ -79,6 +85,8 @@ func handle_sprite():
 		animation = "Hit"
 	if (state == state_machine_enemy.ATTACK):
 		animation = "Attack"
+	if (state == state_machine_enemy.DEAD):
+		animation = "Dead"
 	if (dir == 1):
 		$ENEMY_Sprite.set_flip_h(false)
 		$BoxPivot.scale.x = 1
@@ -87,6 +95,8 @@ func handle_sprite():
 		$BoxPivot.scale.x = -1
 	animation_player.play(animation)
 
+func invisible():
+	$ENEMY_Sprite.visible = false
 
 func _on_Hitbox_area_entered(area):
 	if (area.is_in_group("Player_Hurtbox")):

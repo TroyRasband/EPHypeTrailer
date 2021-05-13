@@ -1,9 +1,10 @@
 extends Area2D
 
 onready var player = get_parent()
-onready var enemy = get_parent().get_parent().get_node("ENEMY")
+onready var enemy
 
 func get_hurt():
+	enemy = get_parent().get_parent().get_node("Node2D").get_node("ENEMY")
 	player.health = player.health - 1
 	if (enemy.dir == enemy.direction.RIGHT):
 		player.knockback = Vector2.RIGHT * 500
