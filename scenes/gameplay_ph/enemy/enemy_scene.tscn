@@ -1,8 +1,10 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/gameplay_ph/hurtbox.gd" type="Script" id=1]
 [ext_resource path="res://scenes/gameplay_ph/enemy/enemy_movement.gd" type="Script" id=2]
 [ext_resource path="res://scenes/gameplay_ph/enemy/enemy_sheet_1.png" type="Texture" id=3]
+[ext_resource path="res://scenes/gameplay_ph/enemy/smoke.png" type="Texture" id=4]
+[ext_resource path="res://scenes/gameplay_ph/enemy/smoke.gd" type="Script" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 24, 24 )
@@ -230,6 +232,34 @@ extents = Vector2( 48, 48 )
 radius = 24.0
 height = 60.0
 
+[sub_resource type="Animation" id=8]
+resource_name = "Smoke"
+length = 0.4
+step = 0.0666667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Smoke:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0666667, 0.133333, 0.2, 0.266667 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("Smoke")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"values": [  ]
+}
+
 [node name="Node2D" type="Node2D"]
 
 [node name="ENEMY" type="KinematicBody2D" parent="."]
@@ -247,7 +277,7 @@ position = Vector2( 0, -24 )
 scale = Vector2( 3.98131, 3.98131 )
 texture = ExtResource( 3 )
 hframes = 9
-frame = 4
+frame = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ENEMY"]
 anims/Attack = SubResource( 2 )
@@ -273,4 +303,16 @@ position = Vector2( 48, -24 )
 shape = SubResource( 7 )
 disabled = true
 
+[node name="Smoke_Player" type="AnimationPlayer" parent="ENEMY"]
+anims/Smoke = SubResource( 8 )
+
+[node name="Smoke" type="Sprite" parent="ENEMY"]
+visible = false
+scale = Vector2( 4, 4 )
+texture = ExtResource( 4 )
+hframes = 6
+frame = 4
+script = ExtResource( 5 )
+
 [connection signal="area_entered" from="ENEMY/BoxPivot/Hitbox" to="ENEMY" method="_on_Hitbox_area_entered"]
+[connection signal="animation_finished" from="ENEMY/Smoke_Player" to="ENEMY/Smoke" method="_on_Smoke_Player_animation_finished"]
