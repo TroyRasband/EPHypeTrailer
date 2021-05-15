@@ -95,6 +95,30 @@ tracks/2/keys = {
 "update": 1,
 "values": [ true, true, false, true ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("Hurtbox_Player/PLAYER_Hurtbox:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Hurtbox_Player/PLAYER_Hurtbox:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=4]
 resource_name = "Attack_3"
@@ -138,6 +162,18 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ true, false, true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Hurtbox_Player/PLAYER_Hurtbox:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -183,6 +219,42 @@ tracks/2/keys = {
 "update": 1,
 "values": [ true ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("Hurtbox_Player/PLAYER_Hurtbox:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Hurtbox_Player/PLAYER_Hurtbox:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 8 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Hurtbox_Player/PLAYER_Hurtbox:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [sub_resource type="Animation" id=6]
 length = 0.5
@@ -199,6 +271,18 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Hurtbox_Player/PLAYER_Hurtbox:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
 }
 
 [sub_resource type="Animation" id=7]
@@ -221,7 +305,7 @@ tracks/0/keys = {
 [sub_resource type="CircleShape2D" id=8]
 radius = 28.8444
 
-[sub_resource type="RectangleShape2D" id=9]
+[sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 40, 56 )
 
 [node name="PLAYER" type="KinematicBody2D"]
@@ -231,8 +315,8 @@ script = ExtResource( 2 )
 [node name="PLAYER_Sprite" type="Sprite" parent="."]
 scale = Vector2( 4, 4 )
 texture = ExtResource( 1 )
-hframes = 25
-frame = 24
+hframes = 26
+frame = 9
 
 [node name="PLAYER_Coll" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 40 )
@@ -281,7 +365,7 @@ script = ExtResource( 3 )
 
 [node name="PLAYER_Hurtbox" type="CollisionShape2D" parent="Hurtbox_Player"]
 position = Vector2( 0, 8 )
-shape = SubResource( 9 )
+shape = SubResource( 10 )
 
 [node name="Restrict_Spawn_TL" type="Position2D" parent="."]
 position = Vector2( -96, -112 )

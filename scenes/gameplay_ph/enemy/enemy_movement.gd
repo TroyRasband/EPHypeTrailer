@@ -101,3 +101,5 @@ func invisible():
 func _on_Hitbox_area_entered(area):
 	if (area.is_in_group("Player_Hurtbox")):
 		area.get_hurt()
+	if (area.is_in_group("Block")):
+		area.block_attack()

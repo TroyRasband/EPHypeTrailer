@@ -2,7 +2,7 @@
 
 [ext_resource path="res://scenes/gameplay_ph/hurtbox.gd" type="Script" id=1]
 [ext_resource path="res://scenes/gameplay_ph/enemy/enemy_movement.gd" type="Script" id=2]
-[ext_resource path="res://scenes/gameplay_ph/enemy/enemy_sheet.png" type="Texture" id=3]
+[ext_resource path="res://scenes/gameplay_ph/enemy/enemy_sheet_1.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 24, 24 )
@@ -226,8 +226,9 @@ tracks/1/keys = {
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 48, 48 )
 
-[sub_resource type="CircleShape2D" id=7]
+[sub_resource type="CapsuleShape2D" id=7]
 radius = 24.0
+height = 60.0
 
 [node name="Node2D" type="Node2D"]
 
@@ -268,7 +269,7 @@ shape = SubResource( 6 )
 [node name="Hitbox" type="Area2D" parent="ENEMY/BoxPivot"]
 
 [node name="ENEMY_Hitbox" type="CollisionShape2D" parent="ENEMY/BoxPivot/Hitbox"]
-position = Vector2( 48, 8 )
+position = Vector2( 48, -24 )
 shape = SubResource( 7 )
 disabled = true
 

@@ -5,12 +5,14 @@ var vel = Vector2.ZERO
 var speed = 300
 var animation = "Idle"
 var attack
+var block
 var state = true
 var prev_attack = "Attack_3"
 var health = 16
 var not_dead
 
 var knockback = Vector2.ZERO
+var block_knockback = Vector2.ZERO
 
 var state_m
 
@@ -21,7 +23,8 @@ enum state_machine_player {
 	MOVE,
 	HIT,
 	ATTACK,
-	IDLE
+	IDLE,
+	BLOCK
 }
 
 enum direction {
@@ -48,7 +51,7 @@ func _physics_process(delta):
 		else:
 			input = Vector2.ZERO
 	
-		if state_m == state_machine_player.HIT:
+		if state_m == state_machine_player.HIT || state_m == state_machine_player.BLOCK:
 			knockback = knockback.move_toward(Vector2.ZERO, 1000 * delta)
 			knockback = move_and_slide(knockback)
 		
@@ -85,7 +88,11 @@ func handle_sprite(input, vel, attack):
 		$BoxPivot.scale.x = 1
 		
 	if state_m == state_machine_player.HIT:
+		block = 0
 		animation = "Hit"
+	
+	if state_m == state_machine_player.BLOCK:
+		animation = "Block"
 
 # Handles animation state; returns true if the attack animation is playing; false otherwise
 func state(animation):
