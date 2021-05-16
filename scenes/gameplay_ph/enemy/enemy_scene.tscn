@@ -20,7 +20,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.133333, 0.2, 0.333333, 0.4, 0.6 ),
+"times": PoolRealArray( 0, 0.2, 0.266667, 0.333333, 0.4, 0.6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 4, 4, 5, 5, 6, 6 ]
@@ -259,6 +259,18 @@ tracks/1/keys = {
 "transitions": PoolRealArray(  ),
 "values": [  ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("Smoke:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.333333 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
 
 [node name="Node2D" type="Node2D"]
 
@@ -277,7 +289,7 @@ position = Vector2( 0, -24 )
 scale = Vector2( 3.98131, 3.98131 )
 texture = ExtResource( 3 )
 hframes = 9
-frame = 5
+frame = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ENEMY"]
 anims/Attack = SubResource( 2 )
@@ -303,9 +315,6 @@ position = Vector2( 48, -24 )
 shape = SubResource( 7 )
 disabled = true
 
-[node name="Smoke_Player" type="AnimationPlayer" parent="ENEMY"]
-anims/Smoke = SubResource( 8 )
-
 [node name="Smoke" type="Sprite" parent="ENEMY"]
 visible = false
 scale = Vector2( 4, 4 )
@@ -313,6 +322,9 @@ texture = ExtResource( 4 )
 hframes = 6
 frame = 4
 script = ExtResource( 5 )
+
+[node name="Smoke_Player" type="AnimationPlayer" parent="ENEMY"]
+anims/Smoke = SubResource( 8 )
 
 [connection signal="area_entered" from="ENEMY/BoxPivot/Hitbox" to="ENEMY" method="_on_Hitbox_area_entered"]
 [connection signal="animation_finished" from="ENEMY/Smoke_Player" to="ENEMY/Smoke" method="_on_Smoke_Player_animation_finished"]

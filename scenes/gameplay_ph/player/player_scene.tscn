@@ -305,7 +305,7 @@ tracks/0/keys = {
 [sub_resource type="CircleShape2D" id=8]
 radius = 28.8444
 
-[sub_resource type="RectangleShape2D" id=10]
+[sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 40, 56 )
 
 [node name="PLAYER" type="KinematicBody2D"]
@@ -365,7 +365,7 @@ script = ExtResource( 3 )
 
 [node name="PLAYER_Hurtbox" type="CollisionShape2D" parent="Hurtbox_Player"]
 position = Vector2( 0, 8 )
-shape = SubResource( 10 )
+shape = SubResource( 9 )
 
 [node name="Restrict_Spawn_TL" type="Position2D" parent="."]
 position = Vector2( -96, -112 )

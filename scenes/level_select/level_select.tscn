@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://scenes/level_select/lvl_indi.gd" type="Script" id=1]
+[ext_resource path="res://scenes/level_select/sprites/ready.png" type="Texture" id=1]
 [ext_resource path="res://scenes/level_select/button.gd" type="Script" id=2]
 [ext_resource path="res://scenes/level_select/select_level.gd" type="Script" id=3]
 [ext_resource path="res://scenes/level_select/sprites/button.png" type="Texture" id=4]
@@ -13,19 +13,6 @@ anchor_bottom = 1.0
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
-}
-
-[node name="Level_Indicator" type="RichTextLabel" parent="."]
-margin_left = 600.0
-margin_top = 320.0
-margin_right = 640.0
-margin_bottom = 360.0
-bbcode_text = "yikes"
-text = "yikes"
-script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
 }
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -76,12 +63,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ugh" type="RichTextLabel" parent="."]
-margin_left = 528.0
-margin_top = 656.0
-margin_right = 728.0
-margin_bottom = 704.0
-text = "Press space to go to game"
+[node name="Select" type="TextureButton" parent="."]
+anchor_right = 0.031
+anchor_bottom = 0.056
+margin_left = 488.0
+margin_top = 584.0
+margin_right = 752.32
+margin_bottom = 663.68
+texture_normal = ExtResource( 1 )
+expand = true
+stretch_mode = 4
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[connection signal="pressed" from="Select" to="." method="_on_Select_pressed"]
