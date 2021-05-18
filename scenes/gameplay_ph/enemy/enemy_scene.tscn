@@ -2,7 +2,7 @@
 
 [ext_resource path="res://scenes/gameplay_ph/hurtbox.gd" type="Script" id=1]
 [ext_resource path="res://scenes/gameplay_ph/enemy/enemy_movement.gd" type="Script" id=2]
-[ext_resource path="res://scenes/gameplay_ph/enemy/enemy_sheet_1.png" type="Texture" id=3]
+[ext_resource path="res://scenes/gameplay_ph/enemy/enemy_sheet_3.png" type="Texture" id=3]
 [ext_resource path="res://scenes/gameplay_ph/enemy/smoke.png" type="Texture" id=4]
 [ext_resource path="res://scenes/gameplay_ph/enemy/smoke.gd" type="Script" id=5]
 
