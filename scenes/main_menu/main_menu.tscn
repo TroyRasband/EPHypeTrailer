@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/main_menu/main_menu.gd" type="Script" id=1]
 [ext_resource path="res://scenes/main_menu/logo.png" type="Texture" id=2]
+[ext_resource path="res://scenes/main_menu/main_menu_bck.png" type="Texture" id=3]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -11,22 +12,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-margin_right = 200.0
-margin_bottom = 200.0
-text = "Placeholder main menu"
-fit_content_height = true
+[node name="YSort" type="YSort" parent="."]
+
+[node name="Logo" type="Sprite" parent="YSort"]
+position = Vector2( 792, 312 )
+scale = Vector2( 10, 10 )
+texture = ExtResource( 2 )
+
+[node name="TextureRect" type="TextureRect" parent="YSort"]
+margin_right = 426.0
+margin_bottom = 240.0
+rect_scale = Vector2( 3, 3 )
+texture = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="."]
-margin_top = 48.0
-margin_right = 283.0
-margin_bottom = 192.0
-text = "Tap anywhere to start (binded to space)"
-
-[node name="Logo" type="Sprite" parent="."]
-position = Vector2( 640, 360 )
-scale = Vector2( 5, 5 )
-texture = ExtResource( 2 )
