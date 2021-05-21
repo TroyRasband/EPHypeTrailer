@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/main_menu/main_menu.gd" type="Script" id=1]
 [ext_resource path="res://scenes/main_menu/logo.png" type="Texture" id=2]
 [ext_resource path="res://scenes/main_menu/main_menu_bck.png" type="Texture" id=3]
+[ext_resource path="res://scenes/main_menu/menu_text_1.png" type="Texture" id=4]
+[ext_resource path="res://scenes/main_menu/menu_text_1.gd" type="Script" id=5]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -27,3 +29,13 @@ texture = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Menu_text_1" type="Sprite" parent="YSort"]
+position = Vector2( 808, 592 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 4 )
+script = ExtResource( 5 )
+
+[node name="Timer" type="Timer" parent="YSort/Menu_text_1"]
+
+[connection signal="timeout" from="YSort/Menu_text_1/Timer" to="YSort/Menu_text_1" method="_on_Timer_timeout"]
