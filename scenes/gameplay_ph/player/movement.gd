@@ -108,16 +108,19 @@ func handle_attack():
 	if attack:
 		if (prev_attack == "Attack_3") && timer.time_left == 0:
 			animation = "Attack_1"
+			$Sound_Punch.play()
 			swap()
 			reset_timer()
 			return
 		if (prev_attack == "Attack_1"):
 			animation = "Attack_2"
+			$Sound_Punch.play()
 			swap()
 			reset_timer()
 			return
 		if (prev_attack == "Attack_2"):
 			animation = "Attack_3"
+			$Sound_Punch.play()
 			swap()
 			timer.set_wait_time(1)
 			timer.stop()
@@ -141,6 +144,7 @@ func reset_timer():
 func _on_Hitbox_area_entered(area):
 	if (area.is_in_group("Hurtbox")):
 		area.get_hurt()
+		$Sound_Hit.play()
 	if (area.is_in_group("Hurtbox") && animation == "Attack_3"):
 		area.get_hurt_really_bad()
 

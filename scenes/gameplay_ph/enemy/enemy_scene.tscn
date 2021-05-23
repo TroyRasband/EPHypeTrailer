@@ -1,10 +1,13 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scenes/gameplay_ph/hurtbox.gd" type="Script" id=1]
 [ext_resource path="res://scenes/gameplay_ph/enemy/enemy_movement.gd" type="Script" id=2]
 [ext_resource path="res://scenes/gameplay_ph/enemy/enemy_sheet_3.png" type="Texture" id=3]
 [ext_resource path="res://scenes/gameplay_ph/enemy/smoke.png" type="Texture" id=4]
 [ext_resource path="res://scenes/gameplay_ph/enemy/smoke.gd" type="Script" id=5]
+[ext_resource path="res://scenes/Sounds/V02.wav" type="AudioStream" id=6]
+[ext_resource path="res://scenes/Sounds/01.wav" type="AudioStream" id=7]
+[ext_resource path="res://scenes/Sounds/03.wav" type="AudioStream" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 24, 24 )
@@ -280,6 +283,10 @@ __meta__ = {
 "_edit_group_": true
 }
 
+[node name="Sound_ENEMYPunch" type="AudioStreamPlayer" parent="ENEMY"]
+stream = ExtResource( 7 )
+pitch_scale = 0.2
+
 [node name="ENEMY_Coll" type="CollisionShape2D" parent="ENEMY"]
 position = Vector2( 0, 8 )
 shape = SubResource( 1 )
@@ -296,6 +303,9 @@ anims/Attack = SubResource( 2 )
 anims/Dead = SubResource( 3 )
 anims/Hit = SubResource( 4 )
 anims/Move = SubResource( 5 )
+
+[node name="Sound_ENEMYHit" type="AudioStreamPlayer" parent="ENEMY"]
+stream = ExtResource( 6 )
 
 [node name="Hurtbox" type="Area2D" parent="ENEMY" groups=[
 "Hurtbox",
@@ -322,6 +332,9 @@ texture = ExtResource( 4 )
 hframes = 6
 frame = 4
 script = ExtResource( 5 )
+
+[node name="Enemy_Spawn" type="AudioStreamPlayer" parent="ENEMY/Smoke"]
+stream = ExtResource( 8 )
 
 [node name="Smoke_Player" type="AnimationPlayer" parent="ENEMY"]
 anims/Smoke = SubResource( 8 )
