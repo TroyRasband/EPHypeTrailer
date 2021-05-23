@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/V12.wav-5d122ea1fdfde4fa696367fff6671ec2.sample"
+
+[deps]
+
+source_file="res://scenes/Sounds/V12.wav"
+dest_files=[ "res://.import/V12.wav-5d122ea1fdfde4fa696367fff6671ec2.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

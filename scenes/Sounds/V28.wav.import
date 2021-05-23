@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/V28.wav-affec5d423a5259999869aa3ca3d76d5.sample"
+
+[deps]
+
+source_file="res://scenes/Sounds/V28.wav"
+dest_files=[ "res://.import/V28.wav-affec5d423a5259999869aa3ca3d76d5.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

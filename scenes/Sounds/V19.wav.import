@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/V19.wav-fd4135afc8afa6bab2e8559c88cb5920.sample"
+
+[deps]
+
+source_file="res://scenes/Sounds/V19.wav"
+dest_files=[ "res://.import/V19.wav-fd4135afc8afa6bab2e8559c88cb5920.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

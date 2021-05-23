@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/V33.wav-d2fff549dc7a8ec05bde7b331557916e.sample"
+
+[deps]
+
+source_file="res://scenes/Sounds/V33.wav"
+dest_files=[ "res://.import/V33.wav-d2fff549dc7a8ec05bde7b331557916e.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
