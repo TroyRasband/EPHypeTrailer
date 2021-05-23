@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/V50.wav-8c5ce437241c1316481e3b8ef8ef53c0.sample"
+
+[deps]
+
+source_file="res://scenes/Sounds/V50.wav"
+dest_files=[ "res://.import/V50.wav-8c5ce437241c1316481e3b8ef8ef53c0.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
