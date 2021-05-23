@@ -35,9 +35,12 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.6 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0.335, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
+"args": [  ],
+"method": "play_attack_sound"
+}, {
 "args": [  ],
 "method": "change_state_default"
 } ]
@@ -167,9 +170,12 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.2 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
+"args": [  ],
+"method": "play_hurt_sound"
+}, {
 "args": [  ],
 "method": "change_state_default"
 } ]
@@ -283,10 +289,6 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Sound_ENEMYPunch" type="AudioStreamPlayer" parent="ENEMY"]
-stream = ExtResource( 7 )
-pitch_scale = 0.2
-
 [node name="ENEMY_Coll" type="CollisionShape2D" parent="ENEMY"]
 position = Vector2( 0, 8 )
 shape = SubResource( 1 )
@@ -296,13 +298,17 @@ position = Vector2( 0, -24 )
 scale = Vector2( 3.98131, 3.98131 )
 texture = ExtResource( 3 )
 hframes = 9
-frame = 4
+frame = 7
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ENEMY"]
 anims/Attack = SubResource( 2 )
 anims/Dead = SubResource( 3 )
 anims/Hit = SubResource( 4 )
 anims/Move = SubResource( 5 )
+
+[node name="Sound_ENEMYPunch" type="AudioStreamPlayer" parent="ENEMY"]
+stream = ExtResource( 7 )
+pitch_scale = 0.2
 
 [node name="Sound_ENEMYHit" type="AudioStreamPlayer" parent="ENEMY"]
 stream = ExtResource( 6 )

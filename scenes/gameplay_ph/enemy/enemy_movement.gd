@@ -85,7 +85,6 @@ func handle_sprite():
 		animation = "Hit"
 	if (state == state_machine_enemy.ATTACK):
 		animation = "Attack"
-		$Sound_ENEMYPunch.play()
 	if (state == state_machine_enemy.DEAD):
 		animation = "Dead"
 	if (dir == 1):
@@ -102,6 +101,11 @@ func invisible():
 func _on_Hitbox_area_entered(area):
 	if (area.is_in_group("Player_Hurtbox")):
 		area.get_hurt()
-		$Sound_ENEMYHit.play()
 	if (area.is_in_group("Block")):
 		area.block_attack()
+		
+func play_hurt_sound():
+	$Sound_ENEMYHit.play()
+	
+func play_attack_sound():
+	$Sound_ENEMYPunch.play()
