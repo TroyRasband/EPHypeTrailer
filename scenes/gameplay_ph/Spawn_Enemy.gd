@@ -20,6 +20,8 @@ var delta_y
 var max_enemies = 5
 var enemies = 0
 
+var enemies_killed = 0
+
 func _ready():
 	randomize()
 	timer.set_wait_time(6)

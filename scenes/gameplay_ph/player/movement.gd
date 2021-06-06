@@ -10,6 +10,7 @@ var state = true
 var prev_attack = "Attack_3"
 var health = 16
 var not_dead
+var kills = 0
 
 var knockback = Vector2.ZERO
 var block_knockback = Vector2.ZERO
@@ -147,6 +148,10 @@ func _on_Hitbox_area_entered(area):
 		$Sound_Hit.play()
 	if (area.is_in_group("Hurtbox") && animation == "Attack_3"):
 		area.get_hurt_really_bad()
+	if (area.is_in_group("Hurtbox")):
+		if (area.get_parent().get_health() < 1):
+			kills = kills + 1
+			print(kills)
 
 # Gets called when time runs out
 func _on_AttackReset_timeout():
