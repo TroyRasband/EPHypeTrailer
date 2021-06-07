@@ -153,6 +153,9 @@ func _on_Hitbox_area_entered(area):
 			kills = kills + 1
 			print(kills)
 
+func get_kills():
+	return kills
+
 # Gets called when time runs out
 func _on_AttackReset_timeout():
 	prev_attack = "Attack_3"

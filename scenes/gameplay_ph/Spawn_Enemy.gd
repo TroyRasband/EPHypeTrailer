@@ -8,6 +8,10 @@ onready var timer = $Spawn_Time
 onready var enemy 
 onready var scene = get_parent().get_node("YSort")
 
+onready var player = get_parent().get_node("YSort/PLAYER")
+
+onready var time = 6
+
 var rng_x_1 = RandomNumberGenerator.new()
 var rng_x_2 = RandomNumberGenerator.new()
 
@@ -24,18 +28,24 @@ var enemies_killed = 0
 
 func _ready():
 	randomize()
-	timer.set_wait_time(6)
+	timer.set_wait_time(time)
 	timer.start()
+	
+func _physics_process(delta):
+	time = (6 - (6 * (player.get_kills() * 0.066667)))
+	if (time < 0):
+		time = 0
 
 func spawn():
-	if (enemies <= max_enemies - 1):	
-		enemy = preload("res://scenes/gameplay_ph/enemy/enemy_scene.tscn")
-		enemy = enemy.instance()
-		enemies = enemies + 1
-		scene.add_child(enemy)
+	if (time > 0):
+		if (enemies <= max_enemies - 1):
+			enemy = preload("res://scenes/gameplay_ph/enemy/enemy_scene.tscn")
+			enemy = enemy.instance()
+			enemies = enemies + 1
+			scene.add_child(enemy)
 		
-		enemy.get_node("ENEMY").position.x = random_x()
-		enemy.get_node("ENEMY").position.y = random_y()
+			enemy.get_node("ENEMY").position.x = random_x()
+			enemy.get_node("ENEMY").position.y = random_y()
 
 func random_x():
 	rng_x_1 = rand_range(region_TL.position.x, restrict_spawn_TL.global_position.x)
@@ -53,6 +63,4 @@ func random_y():
 
 func _on_Spawn_Time_timeout():
 	spawn()
-	timer.stop()
-	timer.set_wait_time(6)
-	timer.start()
+	timer.set_wait_time(time)

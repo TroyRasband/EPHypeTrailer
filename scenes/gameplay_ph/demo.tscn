@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scenes/gameplay_ph/player/player_scene.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Sounds/V00.wav" type="AudioStream" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://scenes/gameplay_ph/player/enemy_meter_fore.png" type="Texture" id=4]
 [ext_resource path="res://scenes/gameplay_ph/player/enemy_meter.png" type="Texture" id=5]
 [ext_resource path="res://scenes/gameplay_ph/enemybar.gd" type="Script" id=6]
+[ext_resource path="res://scenes/gameplay_ph/flag.png" type="Texture" id=7]
 [ext_resource path="res://scenes/gameplay_ph/player/health_fore.png" type="Texture" id=9]
 [ext_resource path="res://scenes/gameplay_ph/player/health_bck.png" type="Texture" id=10]
 [ext_resource path="res://scenes/gameplay_ph/player/health_mid.png" type="Texture" id=11]
@@ -46,16 +47,27 @@ __meta__ = {
 [node name="Enemy_Bar" type="TextureProgress" parent="CanvasLayer"]
 anchor_left = 0.069
 anchor_top = 0.167
-anchor_right = 0.287
-anchor_bottom = 0.244
+anchor_right = 0.14
+anchor_bottom = 0.189
 margin_left = -0.32
 margin_top = -0.239998
-margin_right = -239.36
-margin_bottom = -47.68
+margin_right = -78.2
+margin_bottom = -14.08
 rect_scale = Vector2( 7, 7 )
+value = 100.0
 texture_over = ExtResource( 4 )
 texture_progress = ExtResource( 5 )
 script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Flag" type="TextureRect" parent="CanvasLayer"]
+margin_left = 184.0
+margin_top = 112.0
+margin_right = 229.0
+margin_bottom = 155.0
+texture = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -75,10 +87,8 @@ z_index = -1
 collision_layer = 2
 
 [node name="BCK_Img" type="TextureRect" parent="YSort/BCK"]
-margin_left = 1.19209e-07
-margin_top = 1.59999
 margin_right = 256.0
-margin_bottom = 143.6
+margin_bottom = 144.0
 texture = ExtResource( 3 )
 expand = true
 __meta__ = {
