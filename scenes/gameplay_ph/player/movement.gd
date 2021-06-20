@@ -11,6 +11,7 @@ var prev_attack = "Attack_3"
 var health = 16
 var not_dead
 var kills = 0
+var orientation
 
 var knockback = Vector2.ZERO
 var block_knockback = Vector2.ZERO
@@ -37,6 +38,8 @@ func _ready():
 	state_m = state_machine_player.IDLE
 	timer.set_wait_time(1)
 	not_dead = true
+	
+	orientation = direction.RIGHT
 
 # Handles physics processes including collision
 func _physics_process(delta):
@@ -62,6 +65,13 @@ func _physics_process(delta):
 	
 		vel = input.normalized() * speed * 60
 		vel = move_and_slide(vel * delta)
+		
+		if (orientation == direction.RIGHT):
+			$PLAYER_Sprite.set_flip_h(false)
+			$BoxPivot.scale.x = 1
+		if (orientation == direction.LEFT):
+			$PLAYER_Sprite.set_flip_h(true)
+			$BoxPivot.scale.x = -1
 	
 		handle_sprite(input, vel, attack)
 	
@@ -82,11 +92,9 @@ func handle_sprite(input, vel, attack):
 
 	# Flip sprite depending on what direction the player is facing
 	if input.x == -1:
-		$PLAYER_Sprite.set_flip_h(true)
-		$BoxPivot.scale.x = -1
+		orientation = direction.LEFT
 	if input.x == 1:
-		$PLAYER_Sprite.set_flip_h(false)
-		$BoxPivot.scale.x = 1
+		orientation = direction.RIGHT
 		
 	if state_m == state_machine_player.HIT:
 		block = 0
