@@ -5,6 +5,10 @@ onready var button_r = $Button_2
 onready var button_l = $Button_1
 onready var select = $Select
 
+onready var levels = [load("res://scenes/gameplay_ph/backgrounds/Airportlevel.png"),
+			load("res://scenes/gameplay_ph/backgrounds/alien_level.png"),
+			load("res://scenes/gameplay_ph/backgrounds/OfficeLevel.png")]
+
 # Update text by getting the node and actively setting the text to the counter value
 func _process(_delta):
 	# Quirky modulus math that returns the index of the level
@@ -15,8 +19,10 @@ func _process(_delta):
 		ed(false, true)
 	else:
 		ed(false, false)
+	$Level_Display.set_texture(levels[level])
 
 func _on_Select_pressed():
+	Level.level = level
 	get_tree().change_scene("res://scenes/gameplay_ph/demo.tscn")
 
 # Function used to disable/enable the buttons

@@ -14,6 +14,10 @@ config/name="EPProj"
 run/main_scene="res://scenes/main_menu/main_menu.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Level="*res://scenes/level_select/level.gd"
+
 [debug]
 
 settings/stdout/print_fps=true

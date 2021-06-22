@@ -20,6 +20,11 @@ onready var enemy_spawn
 onready var player
 onready var animation_player = $AnimationPlayer
 
+onready var enemy_sprites = [load("res://scenes/gameplay_ph/enemy/enemy_sheet_2.png"),
+							load("res://scenes/gameplay_ph/enemy/enemy_sheet_3.png"),
+							load("res://scenes/gameplay_ph/enemy/enemy_sheet.png"),
+							load("res://scenes/gameplay_ph/enemy/enemy_sheet_1.png")]
+
 # Expermenting with state machines for enemy
 enum state_machine_enemy {
 	MOVE,
@@ -33,16 +38,9 @@ enum direction {
 	RIGHT
 }
 
-enum level_type {
-	ONE,
-	TWO,
-	THREE,
-	FOUR
-}
-
 func _ready():
 	state = state_machine_enemy.MOVE
-	type = level_type.ONE
+	$ENEMY_Sprite.set_texture(enemy_sprites[Level.level])
 	player = get_parent().get_node("../PLAYER")
 	enemy_spawn = get_parent().get_parent().get_node("../Spawn_Enemy")
 
