@@ -1,10 +1,25 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/main_menu/main_menu.gd" type="Script" id=1]
 [ext_resource path="res://scenes/main_menu/logo.png" type="Texture" id=2]
 [ext_resource path="res://scenes/main_menu/main_menu_bck.png" type="Texture" id=3]
 [ext_resource path="res://scenes/main_menu/menu_text_1.png" type="Texture" id=4]
 [ext_resource path="res://scenes/main_menu/menu_text_1.gd" type="Script" id=5]
+
+[sub_resource type="Animation" id=1]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+}
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -37,5 +52,16 @@ texture = ExtResource( 4 )
 script = ExtResource( 5 )
 
 [node name="Timer" type="Timer" parent="YSort/Menu_text_1"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ColorRect"]
+anims/fade_out = SubResource( 1 )
 
 [connection signal="timeout" from="YSort/Menu_text_1/Timer" to="YSort/Menu_text_1" method="_on_Timer_timeout"]
