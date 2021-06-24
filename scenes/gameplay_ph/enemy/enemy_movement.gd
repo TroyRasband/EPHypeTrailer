@@ -6,7 +6,6 @@ var speed = 120
 var is_hurt = false
 var health = 6
 var animation = "Move"
-
 var dir
 
 var knockback = Vector2.ZERO
@@ -20,10 +19,10 @@ onready var enemy_spawn
 onready var player
 onready var animation_player = $AnimationPlayer
 
-onready var enemy_sprites = [load("res://scenes/gameplay_ph/enemy/enemy_sheet_2.png"),
+onready var enemy_sprites = [load("res://scenes/gameplay_ph/enemy/enemy_sheet_1.png"),
+							load("res://scenes/gameplay_ph/enemy/enemy_sheet_2.png"),
 							load("res://scenes/gameplay_ph/enemy/enemy_sheet_3.png"),
-							load("res://scenes/gameplay_ph/enemy/enemy_sheet.png"),
-							load("res://scenes/gameplay_ph/enemy/enemy_sheet_1.png")]
+							load("res://scenes/gameplay_ph/enemy/enemy_sheet.png")]
 
 # Expermenting with state machines for enemy
 enum state_machine_enemy {
@@ -48,7 +47,6 @@ func _physics_process(delta):
 	
 	if (health <= 0):
 		state = state_machine_enemy.DEAD
-		enemy_spawn.enemies = enemy_spawn.enemies - 1
 	
 	handle_sprite()
 	vel = (player.position - position).normalized() * speed

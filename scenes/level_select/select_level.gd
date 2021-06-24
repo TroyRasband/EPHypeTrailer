@@ -5,7 +5,8 @@ onready var button_r = $Button_2
 onready var button_l = $Button_1
 onready var select = $Select
 
-onready var levels = [load("res://scenes/gameplay_ph/backgrounds/Airportlevel.png"),
+onready var levels = [load("res://scenes/gameplay_ph/backgrounds/forestlevel.png"),
+			load("res://scenes/gameplay_ph/backgrounds/Airportlevel.png"),
 			load("res://scenes/gameplay_ph/backgrounds/alien_level.png"),
 			load("res://scenes/gameplay_ph/backgrounds/OfficeLevel.png")]
 
