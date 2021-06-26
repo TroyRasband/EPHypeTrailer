@@ -51,7 +51,7 @@ tracks/0/keys = {
 "values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=3]
 resource_name = "Victory_Screen"
 length = 0.3
 tracks/0/type = "value"
@@ -103,13 +103,13 @@ tracks/3/keys = {
 "values": [ Vector2( 696, 752 ), Vector2( 696, 448 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 1.28, 2.24 )
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 9.6, 44.8 )
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 128, 10 )
 
 [node name="Node2D" type="Node2D"]
@@ -240,7 +240,7 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer_Victory" type="AnimationPlayer" parent="CanvasLayer/Victory_Screen"]
-anims/Victory_Screen = SubResource( 6 )
+anims/Victory_Screen = SubResource( 3 )
 
 [node name="YSort" type="YSort" parent="."]
 
@@ -269,19 +269,19 @@ __meta__ = {
 [node name="BCK_Coll" type="CollisionShape2D" parent="YSort/BCK"]
 position = Vector2( 128, 44.8 )
 scale = Vector2( 100, 20 )
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 
 [node name="BCK_COLL_L" type="CollisionShape2D" parent="YSort/BCK"]
 position = Vector2( -9.6, 99.2 )
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="BCK_COLL_R" type="CollisionShape2D" parent="YSort/BCK"]
 position = Vector2( 265.6, 99.2 )
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="BCK_COLL_B" type="CollisionShape2D" parent="YSort/BCK"]
 position = Vector2( 128, 153.6 )
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
 [node name="Spawn_Region_BR" type="Position2D" parent="."]
 position = Vector2( 1216, 664 )

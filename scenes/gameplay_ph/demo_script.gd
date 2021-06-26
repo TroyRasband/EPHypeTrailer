@@ -5,6 +5,7 @@ onready var victory_anim_done = 0
 
 func _ready():
 	Level.complete = 0
+	print(Level.level)
 	$CanvasLayer/Fade_in/AnimationPlayer.play("fade_in")
 
 func _process(delta):
