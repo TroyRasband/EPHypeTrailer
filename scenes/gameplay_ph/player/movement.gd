@@ -5,6 +5,10 @@ var vel = Vector2.ZERO
 var speed = 300
 var animation = "Idle"
 var attack
+
+# For debugging
+var end
+
 var block
 var state = true
 var prev_attack = "Attack_3"
@@ -43,9 +47,13 @@ func _ready():
 
 # Handles physics processes including collision
 func _physics_process(delta):
-	if (not_dead):
+	if (not_dead) && (Level.complete == 0):
 		var input = Vector2.ZERO
 		attack = Input.is_action_just_pressed("ui_accept")
+		end = Input.is_action_just_pressed("ui_end")
+		
+		if (end):
+			Level.complete = 1
 	
 		# If the attack animation is not playing
 		if !attack && state(animation) == false && state_m != state_machine_player.HIT:
@@ -74,6 +82,10 @@ func _physics_process(delta):
 			$BoxPivot.scale.x = -1
 	
 		handle_sprite(input, vel, attack)
+	
+	if (kills == 15):
+		Level.complete = 1
+		animation = "Idle"
 	
 func handle_sprite(input, vel, attack):
 	# Set animation to variable animation

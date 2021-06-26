@@ -35,15 +35,14 @@ func _ready():
 	timer.start()
 	
 func _physics_process(delta):
-	if (enemies == max_enemies):
+	if (enemies >= max_enemies):
 		maxed_out = true
 	else:
 		maxed_out = false
 	
-	if (!maxed_out):
-		time = (6 - (6 * (player.get_kills() * 0.066667)))
-		if (time < 0):
-			time = 0.000000000000000000001
+	time = (6 - (6 * (player.get_kills() * 0.066667)))
+	if (time < 0):
+		time = 0.000000000000000000001
 
 func spawn():
 	if (time > 0):
@@ -72,5 +71,7 @@ func random_y():
 	return rng_y
 
 func _on_Spawn_Time_timeout():
-	spawn()
-	timer.set_wait_time(time)
+	if (Level.complete == 0):
+		if (!maxed_out):
+			spawn()
+			timer.set_wait_time(time)
