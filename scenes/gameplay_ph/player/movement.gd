@@ -6,6 +6,8 @@ var speed = 300
 var animation = "Idle"
 var attack
 
+onready var boss_timer = get_parent().get_parent().get_node("Spawn_Boss/Spawn_Time_Boss")
+
 # For debugging
 var end
 
@@ -16,6 +18,8 @@ var health = 16
 var not_dead
 var kills = 0
 var orientation
+
+var boss_ready = 0
 
 var knockback = Vector2.ZERO
 var block_knockback = Vector2.ZERO
@@ -53,7 +57,7 @@ func _physics_process(delta):
 		end = Input.is_action_just_pressed("ui_end")
 		
 		if (end):
-			Level.complete = 1
+			kills = 15
 	
 		# If the attack animation is not playing
 		if !attack && state(animation) == false && state_m != state_machine_player.HIT:
@@ -84,9 +88,14 @@ func _physics_process(delta):
 		handle_sprite(input, vel, attack)
 	
 	if (kills == 15):
-		Level.complete = 1
-		animation = "Idle"
-	
+		if (Level.level != 3):
+			Level.complete = 1
+			animation = "Idle"
+		if (Level.level == 3) && (boss_ready == 0):
+			boss_ready = 1
+			get_parent().get_parent().get_node("Spawn_Boss").timer.start()
+			
+			
 func handle_sprite(input, vel, attack):
 	# Set animation to variable animation
 	player.play(animation)

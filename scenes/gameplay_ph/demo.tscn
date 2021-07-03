@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://scenes/gameplay_ph/player/player_scene.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Sounds/V00.wav" type="AudioStream" id=2]
@@ -18,6 +18,7 @@
 [ext_resource path="res://scenes/gameplay_ph/Victory_Screen.gd" type="Script" id=16]
 [ext_resource path="res://scenes/level_select/sprites/continue.png" type="Texture" id=17]
 [ext_resource path="res://scenes/level_select/sprites/victory.png" type="Texture" id=18]
+[ext_resource path="res://scenes/gameplay_ph/Spawn_Boss.gd" type="Script" id=19]
 
 [sub_resource type="Animation" id=1]
 resource_name = "flash"
@@ -294,8 +295,14 @@ script = ExtResource( 13 )
 
 [node name="Spawn_Time" type="Timer" parent="Spawn_Enemy"]
 
+[node name="Spawn_Boss" type="Node" parent="."]
+script = ExtResource( 19 )
+
+[node name="Spawn_Time_Boss" type="Timer" parent="Spawn_Boss"]
+
 [connection signal="animation_finished" from="CanvasLayer/Flash/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="pressed" from="CanvasLayer/Victory_Screen/Quit_Button" to="CanvasLayer/Victory_Screen" method="_on_Quit_Button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Victory_Screen/Continue_Button" to="CanvasLayer/Victory_Screen" method="_on_Continue_Button_pressed"]
 [connection signal="animation_finished" from="CanvasLayer/Victory_Screen/AnimationPlayer_Victory" to="." method="_on_AnimationPlayer_Victory_animation_finished"]
 [connection signal="timeout" from="Spawn_Enemy/Spawn_Time" to="Spawn_Enemy" method="_on_Spawn_Time_timeout"]
+[connection signal="timeout" from="Spawn_Boss/Spawn_Time_Boss" to="Spawn_Boss" method="_on_Spawn_Time_Boss_timeout"]

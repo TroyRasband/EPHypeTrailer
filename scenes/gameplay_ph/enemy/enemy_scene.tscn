@@ -295,10 +295,10 @@ shape = SubResource( 1 )
 
 [node name="ENEMY_Sprite" type="Sprite" parent="ENEMY"]
 position = Vector2( 0, -24 )
-scale = Vector2( 3.98131, 3.98131 )
+scale = Vector2( 4, 4 )
 texture = ExtResource( 3 )
 hframes = 9
-frame = 7
+frame = 6
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ENEMY"]
 anims/Attack = SubResource( 2 )
@@ -332,11 +332,9 @@ shape = SubResource( 7 )
 disabled = true
 
 [node name="Smoke" type="Sprite" parent="ENEMY"]
-visible = false
 scale = Vector2( 4, 4 )
 texture = ExtResource( 4 )
 hframes = 6
-frame = 4
 script = ExtResource( 5 )
 
 [node name="Enemy_Spawn" type="AudioStreamPlayer" parent="ENEMY/Smoke"]

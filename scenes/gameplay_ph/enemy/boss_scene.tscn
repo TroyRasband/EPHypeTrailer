@@ -1,0 +1,322 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://scenes/gameplay_ph/enemy/final_boss.png" type="Texture" id=1]
+[ext_resource path="res://scenes/gameplay_ph/enemy/smoke.png" type="Texture" id=2]
+[ext_resource path="res://scenes/gameplay_ph/enemy/boss_main.gd" type="Script" id=3]
+[ext_resource path="res://scenes/gameplay_ph/enemy/Hurtbox_Boss.gd" type="Script" id=4]
+[ext_resource path="res://scenes/gameplay_ph/enemy/Smoke.gd" type="Script" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 64, 64 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "Attack"
+length = 1.06667
+loop = true
+step = 0.0666667
+tracks/0/type = "value"
+tracks/0/path = NodePath("BOSS_Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333, 0.4, 0.466667, 0.533333, 0.6, 0.666667, 0.733333, 0.8, 0.866667, 0.933333, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("BoxPivot/Hitbox/BOSS_Hitbox:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.466667, 0.533334 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1.072 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "change_state_default"
+} ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("BOSS_Coll:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Hurtbox/BOSS_Hurtbox:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Dead"
+tracks/0/type = "value"
+tracks/0/path = NodePath("BOSS_Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 20 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Hurtbox/BOSS_Hurtbox:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("BoxPivot/Hitbox/BOSS_Hitbox:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("BOSS_Coll:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Hit"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("BOSS_Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -12, 0 ), Vector2( 12, 0 ), Vector2( -6, 0 ), Vector2( 6, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.8 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "change_state_default"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Hurtbox/BOSS_Hurtbox:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("BoxPivot/Hitbox/BOSS_Hitbox:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("BOSS_Sprite:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 0, 1, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.266667
+step = 0.0666667
+tracks/0/type = "value"
+tracks/0/path = NodePath("BOSS_Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0666667, 0.133333, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Hurtbox/BOSS_Hurtbox:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("BOSS_Coll:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="CapsuleShape2D" id=6]
+radius = 32.0
+height = 96.0
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 64, 64 )
+
+[sub_resource type="Animation" id=8]
+resource_name = "Smoke"
+length = 0.4
+step = 0.06
+tracks/0/type = "value"
+tracks/0/path = NodePath("Smoke:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.06, 0.12, 0.18, 0.24, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Smoke:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.36 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[node name="Node2D" type="Node2D"]
+
+[node name="BOSS" type="KinematicBody2D" parent="."]
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="BOSS_Coll" type="CollisionShape2D" parent="BOSS"]
+shape = SubResource( 1 )
+
+[node name="BOSS_Sprite" type="Sprite" parent="BOSS"]
+position = Vector2( -12, 0 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 1 )
+hframes = 21
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BOSS"]
+anims/Attack = SubResource( 2 )
+anims/Dead = SubResource( 3 )
+anims/Hit = SubResource( 4 )
+anims/Move = SubResource( 5 )
+
+[node name="BoxPivot" type="Position2D" parent="BOSS"]
+
+[node name="Hitbox" type="Area2D" parent="BOSS/BoxPivot"]
+
+[node name="BOSS_Hitbox" type="CollisionShape2D" parent="BOSS/BoxPivot/Hitbox"]
+position = Vector2( 72, -32 )
+shape = SubResource( 6 )
+disabled = true
+
+[node name="Hurtbox" type="Area2D" parent="BOSS" groups=[
+"Hurtbox",
+]]
+script = ExtResource( 4 )
+
+[node name="BOSS_Hurtbox" type="CollisionShape2D" parent="BOSS/Hurtbox"]
+shape = SubResource( 7 )
+
+[node name="Smoke" type="Sprite" parent="BOSS"]
+scale = Vector2( 4, 4 )
+texture = ExtResource( 2 )
+hframes = 6
+script = ExtResource( 5 )
+
+[node name="Smoke_Player" type="AnimationPlayer" parent="BOSS"]
+anims/Smoke = SubResource( 8 )
+
+[connection signal="area_entered" from="BOSS/BoxPivot/Hitbox" to="BOSS" method="_on_Hitbox_area_entered"]
