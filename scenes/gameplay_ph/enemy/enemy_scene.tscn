@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://scenes/gameplay_ph/hurtbox.gd" type="Script" id=1]
 [ext_resource path="res://scenes/gameplay_ph/enemy/enemy_movement.gd" type="Script" id=2]
@@ -8,6 +8,10 @@
 [ext_resource path="res://scenes/Sounds/V02.wav" type="AudioStream" id=6]
 [ext_resource path="res://scenes/Sounds/01.wav" type="AudioStream" id=7]
 [ext_resource path="res://scenes/Sounds/03.wav" type="AudioStream" id=8]
+[ext_resource path="res://scenes/gameplay_ph/enemy/health_fore.png" type="Texture" id=9]
+[ext_resource path="res://scenes/gameplay_ph/enemy/health_bck.png" type="Texture" id=10]
+[ext_resource path="res://scenes/gameplay_ph/enemy/health_enemy.png" type="Texture" id=11]
+[ext_resource path="res://scenes/gameplay_ph/enemy/Enemy_Health_Bar.gd" type="Script" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 24, 24 )
@@ -293,12 +297,28 @@ __meta__ = {
 position = Vector2( 0, 8 )
 shape = SubResource( 1 )
 
+[node name="Health" type="TextureProgress" parent="ENEMY"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -64.0
+margin_top = -120.0
+margin_right = -42.0
+margin_bottom = -117.0
+rect_scale = Vector2( 6, 6 )
+max_value = 6.0
+texture_under = ExtResource( 10 )
+texture_over = ExtResource( 9 )
+texture_progress = ExtResource( 11 )
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="ENEMY_Sprite" type="Sprite" parent="ENEMY"]
 position = Vector2( 0, -24 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 3 )
 hframes = 9
-frame = 6
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ENEMY"]
 anims/Attack = SubResource( 2 )
@@ -332,9 +352,11 @@ shape = SubResource( 7 )
 disabled = true
 
 [node name="Smoke" type="Sprite" parent="ENEMY"]
+visible = false
 scale = Vector2( 4, 4 )
 texture = ExtResource( 4 )
 hframes = 6
+frame = 4
 script = ExtResource( 5 )
 
 [node name="Enemy_Spawn" type="AudioStreamPlayer" parent="ENEMY/Smoke"]

@@ -57,6 +57,8 @@ func _physics_process(delta):
 		end = Input.is_action_just_pressed("ui_end")
 		
 		if (end):
+			if (kills == 15):
+				Level.complete = 1
 			kills = 15
 	
 		# If the attack animation is not playing

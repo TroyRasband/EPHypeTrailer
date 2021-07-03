@@ -6,7 +6,7 @@ extends KinematicBody2D
 var vel = Vector2.ZERO
 var speed = 90
 var is_hurt = false
-var health = 50
+var health = 30
 var animation = "Move"
 var dir
 
@@ -40,6 +40,7 @@ func _ready():
 func _physics_process(delta):
 	if (health <= 0):
 		state = state_machine_boss.DEAD
+		Level.complete = 1
 	handle_sprite()
 	vel = (player.position - position).normalized() * speed
 	if state == state_machine_boss.MOVE:
