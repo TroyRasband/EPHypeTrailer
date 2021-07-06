@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Beast Mode Inst.mp3-c3327ca7dac5d4901fb02f69d89f5d59.mp3str"
+
+[deps]
+
+source_file="res://scenes/Music/Beast Mode Inst.mp3"
+dest_files=[ "res://.import/Beast Mode Inst.mp3-c3327ca7dac5d4901fb02f69d89f5d59.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

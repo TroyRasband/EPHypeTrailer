@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Screen Select.mp3-6f8cb23484bc242c2de953ed4753b578.mp3str"
+
+[deps]
+
+source_file="res://scenes/Music/Screen Select.mp3"
+dest_files=[ "res://.import/Screen Select.mp3-6f8cb23484bc242c2de953ed4753b578.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Alien.mp3-34da4cbeb3aa48fefb478fe3ac5fb840.mp3str"
+
+[deps]
+
+source_file="res://scenes/Music/Alien.mp3"
+dest_files=[ "res://.import/Alien.mp3-34da4cbeb3aa48fefb478fe3ac5fb840.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
