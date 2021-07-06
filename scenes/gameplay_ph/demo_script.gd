@@ -3,8 +3,17 @@ extends Node2D
 onready var player = get_node("YSort/PLAYER")
 onready var victory_anim_done = 0
 
+onready var music_player = $Music_Main
+onready var music = [load("res://scenes/Music/Forest.mp3"),
+					load("res://scenes/Music/Airport.mp3"),
+					load("res://scenes/Music/Alien.mp3"),
+					load("res://scenes/Music/Beast Mode Inst.mp3")]
+
 func _ready():
 	Level.complete = 0
+	if (Level.level < 4):
+		music_player.set_stream(music[Level.level])
+		music_player.play()
 	print(Level.level)
 	$CanvasLayer/Fade_in/AnimationPlayer.play("fade_in")
 

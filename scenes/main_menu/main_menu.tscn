@@ -79,7 +79,6 @@ anims/fade_out = SubResource( 1 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
-volume_db = -6.969
 autoplay = true
 
 [connection signal="timeout" from="YSort/Menu_text_1/Timer" to="YSort/Menu_text_1" method="_on_Timer_timeout"]
