@@ -7,12 +7,13 @@ onready var music_player = $Music_Main
 onready var music = [load("res://scenes/Music/Forest.mp3"),
 					load("res://scenes/Music/Airport.mp3"),
 					load("res://scenes/Music/Alien.mp3"),
-					load("res://scenes/Music/Beast Mode Inst.mp3")]
+					load("res://scenes/Music/Beast mode Loop.mp3")]
 
 func _ready():
 	Level.complete = 0
 	if (Level.level < 4):
 		music_player.set_stream(music[Level.level])
+		music_player.volume_db = 0
 		music_player.play()
 	print(Level.level)
 	$CanvasLayer/Fade_in/AnimationPlayer.play("fade_in")
@@ -22,6 +23,7 @@ func _process(delta):
 		$CanvasLayer/Flash/AnimationPlayer.play("flash")
 	if (Level.complete == 1):
 		$CanvasLayer/Victory_Screen/AnimationPlayer_Victory.play("Victory_Screen")
+		music_player.volume_db = -8
 	if (Level.complete == 1) && (victory_anim_done):
 		$CanvasLayer/Victory_Screen/AnimationPlayer_Victory.stop()
 

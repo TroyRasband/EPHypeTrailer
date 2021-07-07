@@ -307,7 +307,6 @@ script = ExtResource( 19 )
 
 [node name="Music_Main" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 20 )
-volume_db = -6.969
 autoplay = true
 
 [connection signal="animation_finished" from="CanvasLayer/Flash/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
