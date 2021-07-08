@@ -57,9 +57,9 @@ func _physics_process(delta):
 		end = Input.is_action_just_pressed("ui_end")
 		
 		if (end):
-			if (kills == 15):
+			if (kills == (15 + (10 * Level.level))):
 				Level.complete = 1
-			kills = 15
+			kills = 15 + (10 * Level.level)
 	
 		# If the attack animation is not playing
 		if !attack && state(animation) == false && state_m != state_machine_player.HIT:
@@ -89,7 +89,7 @@ func _physics_process(delta):
 	
 		handle_sprite(input, vel, attack)
 	
-	if (kills == 15):
+	if (kills == (15 + (10 * Level.level))):
 		if (Level.level != 3):
 			Level.complete = 1
 			animation = "Idle"

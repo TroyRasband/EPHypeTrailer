@@ -25,6 +25,8 @@ var enemies = 0
 
 var enemies_killed = 0
 
+var max_kills = 15 + (10 * Level.level)
+
 func _ready():
 	maxed_out = false
 	randomize()
@@ -37,10 +39,11 @@ func _physics_process(delta):
 	else:
 		maxed_out = false
 	
-	time = (6 - (6 * (player.get_kills() * 0.066667)))
-	if (time < 0):
-		time = 0.000000000000000000001
-	if (player.get_kills() == 15):
+	time = (6 - (6 * (player.get_kills() * (float(1)/float(max_kills)))))
+	
+	if (time < 3):
+		time = 3
+	if (player.get_kills() == max_kills):
 		timer.stop()
 
 func spawn():
