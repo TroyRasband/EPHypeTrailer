@@ -6,7 +6,7 @@
 [ext_resource path="res://scenes/gameplay_ph/enemy/smoke.png" type="Texture" id=4]
 [ext_resource path="res://scenes/gameplay_ph/enemy/smoke.gd" type="Script" id=5]
 [ext_resource path="res://scenes/Sounds/V02.wav" type="AudioStream" id=6]
-[ext_resource path="res://scenes/Sounds/01.wav" type="AudioStream" id=7]
+[ext_resource path="res://scenes/Sounds/V03.wav" type="AudioStream" id=7]
 [ext_resource path="res://scenes/Sounds/03.wav" type="AudioStream" id=8]
 [ext_resource path="res://scenes/gameplay_ph/enemy/health_fore.png" type="Texture" id=9]
 [ext_resource path="res://scenes/gameplay_ph/enemy/health_bck.png" type="Texture" id=10]
@@ -328,7 +328,7 @@ anims/Move = SubResource( 5 )
 
 [node name="Sound_ENEMYPunch" type="AudioStreamPlayer" parent="ENEMY"]
 stream = ExtResource( 7 )
-pitch_scale = 0.2
+pitch_scale = 0.9
 
 [node name="Sound_ENEMYHit" type="AudioStreamPlayer" parent="ENEMY"]
 stream = ExtResource( 6 )
