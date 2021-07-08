@@ -24,11 +24,14 @@ func _process(_delta):
 
 func _on_Select_pressed():
 	$READY.play()
+	$Select.disabled = true
+	$CanvasLayer/Scene_Transition.play("Transition")
 	Level.level = level
-	get_tree().change_scene("res://scenes/gameplay_ph/demo.tscn")
 
 # Function used to disable/enable the buttons
 func ed(b1, b2):
 	button_l.disabled = b1
 	button_r.disabled = b2
 
+func _on_Scene_Transition_animation_finished(anim_name):
+	get_tree().change_scene("res://scenes/gameplay_ph/demo.tscn")

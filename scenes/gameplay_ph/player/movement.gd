@@ -26,6 +26,8 @@ var block_knockback = Vector2.ZERO
 
 var state_m
 
+onready var can_move = 0
+
 onready var timer = get_node("AttackReset")
 onready var player = $AnimationPlayer
 
@@ -51,51 +53,52 @@ func _ready():
 
 # Handles physics processes including collision
 func _physics_process(delta):
-	if (not_dead) && (Level.complete == 0):
-		var input = Vector2.ZERO
-		attack = Input.is_action_just_pressed("ui_accept")
-		end = Input.is_action_just_pressed("ui_end")
+	if (can_move):
+		if (not_dead) && (Level.complete == 0):
+			var input = Vector2.ZERO
+			attack = Input.is_action_just_pressed("ui_accept")
+			end = Input.is_action_just_pressed("ui_end")
 		
-		if (end):
-			if (kills == (15 + (10 * Level.level))):
+			if (end):
+				if (kills == (15 + (10 * Level.level))):
+					Level.complete = 1
+				kills = 15 + (10 * Level.level)
+	
+			# If the attack animation is not playing
+			if !attack && state(animation) == false && state_m != state_machine_player.HIT:
+				# Returns the input values
+				input.x = (Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"))
+				input.y = (Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up"))
+			else:
+				input = Vector2.ZERO
+	
+			if state_m == state_machine_player.HIT || state_m == state_machine_player.BLOCK:
+				knockback = knockback.move_toward(Vector2.ZERO, 1000 * delta)
+				knockback = move_and_slide(knockback)
+		
+			# If the animation is playing but the user attempts to input an attack, set attack to 0
+			if state(animation):
+				attack = 0
+	
+			vel = input.normalized() * speed * 60
+			vel = move_and_slide(vel * delta)
+		
+			if (orientation == direction.RIGHT):
+				$PLAYER_Sprite.set_flip_h(false)
+				$BoxPivot.scale.x = 1
+			if (orientation == direction.LEFT):
+				$PLAYER_Sprite.set_flip_h(true)
+				$BoxPivot.scale.x = -1
+	
+			handle_sprite(input, vel, attack)
+	
+		if (kills == (15 + (10 * Level.level))):
+			if (Level.level != 3):
 				Level.complete = 1
-			kills = 15 + (10 * Level.level)
-	
-		# If the attack animation is not playing
-		if !attack && state(animation) == false && state_m != state_machine_player.HIT:
-			# Returns the input values
-			input.x = (Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"))
-			input.y = (Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up"))
-		else:
-			input = Vector2.ZERO
-	
-		if state_m == state_machine_player.HIT || state_m == state_machine_player.BLOCK:
-			knockback = knockback.move_toward(Vector2.ZERO, 1000 * delta)
-			knockback = move_and_slide(knockback)
-		
-		# If the animation is playing but the user attempts to input an attack, set attack to 0
-		if state(animation):
-			attack = 0
-	
-		vel = input.normalized() * speed * 60
-		vel = move_and_slide(vel * delta)
-		
-		if (orientation == direction.RIGHT):
-			$PLAYER_Sprite.set_flip_h(false)
-			$BoxPivot.scale.x = 1
-		if (orientation == direction.LEFT):
-			$PLAYER_Sprite.set_flip_h(true)
-			$BoxPivot.scale.x = -1
-	
-		handle_sprite(input, vel, attack)
-	
-	if (kills == (15 + (10 * Level.level))):
-		if (Level.level != 3):
-			Level.complete = 1
-			animation = "Idle"
-		if (Level.level == 3) && (boss_ready == 0):
-			boss_ready = 1
-			get_parent().get_parent().get_node("Spawn_Boss").timer.start()
+				animation = "Idle"
+			if (Level.level == 3) && (boss_ready == 0):
+				boss_ready = 1
+				get_parent().get_parent().get_node("Spawn_Boss").timer.start()
 			
 			
 func handle_sprite(input, vel, attack):
@@ -197,3 +200,7 @@ func change_state(_state):
 	
 func change_state_def():
 	state_m = state_machine_player.IDLE
+
+
+func _on_Countdown_Player_animation_finished(anim_name):
+	can_move = 1

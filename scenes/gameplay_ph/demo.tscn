@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://scenes/gameplay_ph/player/player_scene.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Sounds/V00.wav" type="AudioStream" id=2]
@@ -20,6 +20,10 @@
 [ext_resource path="res://scenes/level_select/sprites/victory.png" type="Texture" id=18]
 [ext_resource path="res://scenes/gameplay_ph/Spawn_Boss.gd" type="Script" id=19]
 [ext_resource path="res://scenes/Music/Forest.mp3" type="AudioStream" id=20]
+[ext_resource path="res://scenes/level_select/sprites/countdown.png" type="Texture" id=21]
+[ext_resource path="res://scenes/gameplay_ph/Countdown.gd" type="Script" id=22]
+[ext_resource path="res://scenes/Sounds/37.wav" type="AudioStream" id=23]
+[ext_resource path="res://scenes/Sounds/V12.wav" type="AudioStream" id=24]
 
 [sub_resource type="Animation" id=1]
 resource_name = "flash"
@@ -103,6 +107,94 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 0.3, 1 ),
 "update": 0,
 "values": [ Vector2( 696, 752 ), Vector2( 696, 448 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "Countdown"
+length = 1.4
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Bottom_Rect:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.9, 1.1 ),
+"transitions": PoolRealArray( 1, -5, 1 ),
+"update": 0,
+"values": [ Vector2( -80, 32 ), Vector2( -80, 32 ), Vector2( -80, 42 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Top_Rect:rect_position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.9, 1.1 ),
+"transitions": PoolRealArray( 1, -5, 1 ),
+"update": 0,
+"values": [ Vector2( -80, -80 ), Vector2( -80, -80 ), Vector2( -80, -88 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("AudioStreamPlayer:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.1, 0.4, 0.7, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, true, true, true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("AudioStreamPlayer:stream")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.9, 1.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 23 ), ExtResource( 24 ), ExtResource( 23 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("AudioStreamPlayer:autoplay")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
 }
 
 [sub_resource type="RectangleShape2D" id=4]
@@ -248,6 +340,41 @@ __meta__ = {
 [node name="AnimationPlayer_Victory" type="AnimationPlayer" parent="CanvasLayer/Victory_Screen"]
 anims/Victory_Screen = SubResource( 3 )
 
+[node name="Countdown" type="Sprite" parent="CanvasLayer"]
+visible = false
+position = Vector2( 640, 384 )
+scale = Vector2( 8, 8 )
+texture = ExtResource( 21 )
+hframes = 4
+frame = 3
+script = ExtResource( 22 )
+
+[node name="Countdown_Player" type="AnimationPlayer" parent="CanvasLayer/Countdown"]
+anims/Countdown = SubResource( 7 )
+
+[node name="Bottom_Rect" type="ColorRect" parent="CanvasLayer/Countdown"]
+margin_left = -80.0
+margin_top = 42.0
+margin_right = 80.0
+margin_bottom = 82.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Top_Rect" type="ColorRect" parent="CanvasLayer/Countdown"]
+margin_left = -80.0
+margin_top = -88.0
+margin_right = 80.0
+margin_bottom = -48.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer/Countdown"]
+stream = ExtResource( 23 )
+
 [node name="YSort" type="YSort" parent="."]
 
 [node name="PLAYER" parent="YSort" instance=ExtResource( 1 )]
@@ -313,5 +440,6 @@ autoplay = true
 [connection signal="pressed" from="CanvasLayer/Victory_Screen/Quit_Button" to="CanvasLayer/Victory_Screen" method="_on_Quit_Button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Victory_Screen/Continue_Button" to="CanvasLayer/Victory_Screen" method="_on_Continue_Button_pressed"]
 [connection signal="animation_finished" from="CanvasLayer/Victory_Screen/AnimationPlayer_Victory" to="." method="_on_AnimationPlayer_Victory_animation_finished"]
+[connection signal="animation_finished" from="CanvasLayer/Countdown/Countdown_Player" to="YSort/PLAYER" method="_on_Countdown_Player_animation_finished"]
 [connection signal="timeout" from="Spawn_Enemy/Spawn_Time" to="Spawn_Enemy" method="_on_Spawn_Time_timeout"]
 [connection signal="timeout" from="Spawn_Boss/Spawn_Time_Boss" to="Spawn_Boss" method="_on_Spawn_Time_Boss_timeout"]
