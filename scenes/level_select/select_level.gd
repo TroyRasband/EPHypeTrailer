@@ -23,6 +23,7 @@ func _process(_delta):
 	$Level_Display.set_texture(levels[level])
 
 func _on_Select_pressed():
+	$READY.play()
 	Level.level = level
 	get_tree().change_scene("res://scenes/gameplay_ph/demo.tscn")
 

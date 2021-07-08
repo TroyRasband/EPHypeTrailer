@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/level_select/sprites/ready.png" type="Texture" id=1]
 [ext_resource path="res://scenes/level_select/button.gd" type="Script" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://scenes/level_select/level.gd" type="Script" id=7]
 [ext_resource path="res://scenes/gameplay_ph/backgrounds/Airportlevel.png" type="Texture" id=8]
 [ext_resource path="res://scenes/Music/Screen Select.mp3" type="AudioStream" id=9]
+[ext_resource path="res://scenes/Sounds/23.wav" type="AudioStream" id=10]
+[ext_resource path="res://scenes/Sounds/37.wav" type="AudioStream" id=11]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -52,6 +54,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="UI" type="AudioStreamPlayer" parent="Button_1"]
+stream = ExtResource( 10 )
+
 [node name="Button_2" type="TextureButton" parent="."]
 anchor_left = 0.906
 anchor_top = 0.833
@@ -69,6 +74,9 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="UI" type="AudioStreamPlayer" parent="Button_2"]
+stream = ExtResource( 10 )
 
 [node name="Select" type="TextureButton" parent="."]
 anchor_right = 1.0
@@ -90,5 +98,8 @@ script = ExtResource( 7 )
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 9 )
 autoplay = true
+
+[node name="READY" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
 
 [connection signal="pressed" from="Select" to="." method="_on_Select_pressed"]
