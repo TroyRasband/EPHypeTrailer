@@ -386,34 +386,35 @@ stream = ExtResource( 23 )
 
 [node name="Up" type="TouchScreenButton" parent="CanvasLayer"]
 position = Vector2( 145, 512 )
-scale = Vector2( 3, 3 )
+scale = Vector2( 4, 4 )
 normal = ExtResource( 33 )
 pressed = ExtResource( 30 )
 action = "ui_up"
 
 [node name="Left" type="TouchScreenButton" parent="CanvasLayer"]
 position = Vector2( 82, 574 )
-scale = Vector2( 3, 3 )
+scale = Vector2( 4, 4 )
 normal = ExtResource( 26 )
 pressed = ExtResource( 29 )
 action = "ui_left"
 
 [node name="Right" type="TouchScreenButton" parent="CanvasLayer"]
 position = Vector2( 206, 574 )
-scale = Vector2( 3, 3 )
+scale = Vector2( 4, 4 )
 normal = ExtResource( 31 )
 pressed = ExtResource( 32 )
 action = "ui_right"
 
 [node name="Down" type="TouchScreenButton" parent="CanvasLayer"]
 position = Vector2( 144, 636 )
-scale = Vector2( 3, 3 )
+scale = Vector2( 4, 4 )
 normal = ExtResource( 28 )
 pressed = ExtResource( 27 )
 action = "ui_down"
 
 [node name="Punch" type="TouchScreenButton" parent="CanvasLayer"]
 position = Vector2( 1144, 574 )
+scale = Vector2( 5, 5 )
 normal = ExtResource( 25 )
 pressed = ExtResource( 34 )
 action = "ui_accept"

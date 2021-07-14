@@ -1,11 +1,11 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scenes/level_select/sprites/ready.png" type="Texture" id=1]
 [ext_resource path="res://scenes/level_select/button.gd" type="Script" id=2]
 [ext_resource path="res://scenes/level_select/select_level.gd" type="Script" id=3]
 [ext_resource path="res://scenes/level_select/sprites/button.png" type="Texture" id=4]
 [ext_resource path="res://scenes/level_select/sprites/button_disabled.png" type="Texture" id=5]
-[ext_resource path="res://scenes/level_select/sprites/black.png" type="Texture" id=6]
+[ext_resource path="res://scenes/level_select/sprites/foreground.png" type="Texture" id=6]
 [ext_resource path="res://scenes/level_select/level.gd" type="Script" id=7]
 [ext_resource path="res://scenes/gameplay_ph/backgrounds/Airportlevel.png" type="Texture" id=8]
 [ext_resource path="res://scenes/Music/Screen Select.mp3" type="AudioStream" id=9]
@@ -53,6 +53,106 @@ tracks/2/keys = {
 "values": [ true ]
 }
 
+[sub_resource type="Animation" id=4]
+resource_name = "Fade"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Fade:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1.1487, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Left"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Level_Display:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3, 0.6 ),
+"transitions": PoolRealArray( 0.353, 1, 0.341, 1 ),
+"update": 0,
+"values": [ Vector2( -192, -112 ), Vector2( -88, -112 ), Vector2( -264, -112 ), Vector2( -192, -112 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Fade:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("Button_1")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "sub"
+} ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Right"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Level_Display:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3, 0.6 ),
+"transitions": PoolRealArray( 0.353553, 1, 0.34151, 1 ),
+"update": 0,
+"values": [ Vector2( -192, -112 ), Vector2( -264, -112 ), Vector2( -88, -112 ), Vector2( -192, -112 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Fade:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("Button_2")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "add"
+} ]
+}
+
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -62,31 +162,38 @@ __meta__ = {
 }
 
 [node name="Level_Display" type="Sprite" parent="."]
-scale = Vector2( 3, 3 )
+position = Vector2( -192, -112 )
+scale = Vector2( 4, 4 )
 texture = ExtResource( 8 )
 centered = false
 
-[node name="Level" type="TextureRect" parent="."]
-anchor_top = 0.789
+[node name="Foreground" type="TextureRect" parent="."]
+margin_right = 256.0
+margin_bottom = 144.0
+rect_scale = Vector2( 5, 5 )
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Fade" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -0.0800171
-texture = ExtResource( 6 )
-expand = true
+color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Button_1" type="TextureButton" parent="."]
-anchor_left = 0.028
-anchor_top = 0.833
-anchor_right = 0.094
-anchor_bottom = 0.95
-margin_left = 84.16
-margin_top = 0.239929
-margin_right = 55.68
-margin_bottom = -28.0001
-rect_scale = Vector2( -1.5, 1.5 )
+anchor_left = 0.694
+anchor_top = 0.878
+anchor_right = 0.744
+anchor_bottom = 0.967
+margin_left = 63.68
+margin_top = -0.160034
+margin_right = 15.6799
+margin_bottom = -48.2402
+rect_scale = Vector2( -4, 4 )
 texture_normal = ExtResource( 4 )
 texture_disabled = ExtResource( 5 )
 expand = true
@@ -99,15 +206,15 @@ __meta__ = {
 stream = ExtResource( 10 )
 
 [node name="Button_2" type="TextureButton" parent="."]
-anchor_left = 0.906
-anchor_top = 0.833
-anchor_right = 0.972
-anchor_bottom = 0.95
-margin_left = 0.319946
-margin_top = 0.239929
-margin_right = -28.16
-margin_bottom = -28.0001
-rect_scale = Vector2( 1.5, 1.5 )
+anchor_left = 0.762
+anchor_top = 0.878
+anchor_right = 0.806
+anchor_bottom = 0.967
+margin_left = 0.639954
+margin_top = -0.160034
+margin_right = -39.6802
+margin_bottom = -48.2402
+rect_scale = Vector2( 4, 4 )
 texture_normal = ExtResource( 4 )
 texture_disabled = ExtResource( 5 )
 expand = true
@@ -120,12 +227,14 @@ __meta__ = {
 stream = ExtResource( 10 )
 
 [node name="Select" type="TextureButton" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 488.0
-margin_top = 584.0
-margin_right = -488.0
-margin_bottom = -16.0
+anchor_left = 0.825
+anchor_top = 0.878
+anchor_right = 0.975
+anchor_bottom = 0.978
+margin_top = -0.160034
+margin_right = -176.0
+margin_bottom = -66.16
+rect_scale = Vector2( 12, 12 )
 texture_normal = ExtResource( 1 )
 expand = true
 stretch_mode = 4
@@ -172,6 +281,11 @@ anims/Transition = SubResource( 1 )
 
 [node name="Transition_Audio" type="AudioStreamPlayer" parent="CanvasLayer"]
 stream = ExtResource( 12 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Fade = SubResource( 4 )
+anims/Left = SubResource( 3 )
+anims/Right = SubResource( 2 )
 
 [connection signal="pressed" from="Select" to="." method="_on_Select_pressed"]
 [connection signal="animation_finished" from="CanvasLayer/Scene_Transition" to="." method="_on_Scene_Transition_animation_finished"]

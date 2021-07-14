@@ -10,6 +10,11 @@ onready var levels = [load("res://scenes/gameplay_ph/backgrounds/forestlevel.png
 			load("res://scenes/gameplay_ph/backgrounds/alien_level.png"),
 			load("res://scenes/gameplay_ph/backgrounds/OfficeLevel.png")]
 
+onready var player = get_node("AnimationPlayer")
+
+func _ready():
+	player.play("Fade")
+
 # Update text by getting the node and actively setting the text to the counter value
 func _process(_delta):
 	# Quirky modulus math that returns the index of the level
