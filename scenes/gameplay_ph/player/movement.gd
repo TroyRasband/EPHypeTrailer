@@ -204,3 +204,4 @@ func change_state_def():
 
 func _on_Countdown_Player_animation_finished(anim_name):
 	can_move = 1
+
