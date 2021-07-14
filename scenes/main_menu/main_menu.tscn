@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/main_menu/main_menu.gd" type="Script" id=1]
 [ext_resource path="res://scenes/main_menu/logo.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://scenes/main_menu/menu_text_1.png" type="Texture" id=4]
 [ext_resource path="res://scenes/main_menu/menu_text_1.gd" type="Script" id=5]
 [ext_resource path="res://scenes/Music/Beast mode Loop.mp3" type="AudioStream" id=6]
+[ext_resource path="res://icon.png" type="Texture" id=7]
 
 [sub_resource type="Animation" id=1]
 resource_name = "fade_out"
@@ -41,6 +42,12 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+scale = Vector2( 0.426419, 0.23869 )
+normal = ExtResource( 7 )
+passby_press = true
+action = "get_tree().change_scene(\"res://scenes/level_select/level_select.tscn\")"
 
 [node name="YSort" type="YSort" parent="."]
 
@@ -81,4 +88,5 @@ anims/fade_out = SubResource( 1 )
 stream = ExtResource( 6 )
 autoplay = true
 
+[connection signal="pressed" from="TouchScreenButton" to="." method="_on_TouchScreenButton_pressed"]
 [connection signal="timeout" from="YSort/Menu_text_1/Timer" to="YSort/Menu_text_1" method="_on_Timer_timeout"]
