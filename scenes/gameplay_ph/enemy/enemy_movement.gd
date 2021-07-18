@@ -57,7 +57,12 @@ func _physics_process(delta):
 		if vel.x < -1:
 			dir = direction.LEFT
 	if vel.length() <= 40:
-		change_state(state_machine_enemy.ATTACK)
+		if (Level.enemy_attack == 0):
+			change_state(state_machine_enemy.ATTACK)
+	if (state == state_machine_enemy.ATTACK):
+		Level.enemy_attack = 1
+	else:
+		Level.enemy_attack = 0
 	if state == state_machine_enemy.HIT:
 		knockback = knockback.move_toward(Vector2.ZERO, 1000 * delta)
 		knockback = move_and_slide(knockback)
@@ -70,6 +75,9 @@ func get_health():
 	
 func set_health(health):
 	self.health = health
+
+func reset_attack():
+	Level.enemy_attack = 0
 
 func change_state(_state):
 	state = _state

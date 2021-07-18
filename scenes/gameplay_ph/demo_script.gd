@@ -10,6 +10,7 @@ onready var music = [load("res://scenes/Music/Forest.mp3"),
 					load("res://scenes/Music/Beast mode Loop.mp3")]
 
 func _ready():
+	Level.enemy_attack = 0
 	Level.complete = 0
 	if (Level.level < 4):
 		music_player.set_stream(music[Level.level])

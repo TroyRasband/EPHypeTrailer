@@ -68,7 +68,8 @@ __meta__ = {
 }
 
 [node name="TouchScreenButton" type="TouchScreenButton" parent="."]
-scale = Vector2( 0.426419, 0.23869 )
+position = Vector2( -64, -40 )
+scale = Vector2( 2.8116, 1.584 )
 normal = ExtResource( 7 )
 passby_press = true
 action = "get_tree().change_scene(\"res://scenes/level_select/level_select.tscn\")"

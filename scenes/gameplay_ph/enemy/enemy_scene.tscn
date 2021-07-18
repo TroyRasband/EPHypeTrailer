@@ -19,7 +19,6 @@ extents = Vector2( 24, 24 )
 [sub_resource type="Animation" id=2]
 length = 0.6
 loop = true
-step = 0.0666667
 tracks/0/type = "value"
 tracks/0/path = NodePath("ENEMY_Sprite:frame")
 tracks/0/interp = 1
@@ -319,6 +318,7 @@ position = Vector2( 0, -24 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 3 )
 hframes = 9
+frame = 6
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ENEMY"]
 anims/Attack = SubResource( 2 )
@@ -352,7 +352,6 @@ shape = SubResource( 7 )
 disabled = true
 
 [node name="Smoke" type="Sprite" parent="ENEMY"]
-visible = false
 scale = Vector2( 4, 4 )
 texture = ExtResource( 4 )
 hframes = 6
