@@ -7,7 +7,7 @@ onready var music_player = $Music_Main
 onready var music = [load("res://scenes/Music/Forest.mp3"),
 					load("res://scenes/Music/Airport.mp3"),
 					load("res://scenes/Music/Alien.mp3"),
-					load("res://scenes/Music/Beast mode Loop.mp3")]
+					load("res://scenes/Music/Beast Mode Inst.mp3")]
 
 func _ready():
 	Level.enemy_attack = 0
