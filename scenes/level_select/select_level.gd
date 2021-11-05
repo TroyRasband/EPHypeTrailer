@@ -27,11 +27,19 @@ func _process(_delta):
 		ed(false, false)
 	$Level_Display.set_texture(levels[level])
 
+	if Input.is_action_pressed("ui_accept"):
+		$READY.play()
+		$Select.disabled = true
+		$CanvasLayer/Scene_Transition.play("Transition")
+		Level.level = level
+
 func _on_Select_pressed():
 	$READY.play()
 	$Select.disabled = true
 	$CanvasLayer/Scene_Transition.play("Transition")
 	Level.level = level
+	
+
 
 # Function used to disable/enable the buttons
 func ed(b1, b2):
